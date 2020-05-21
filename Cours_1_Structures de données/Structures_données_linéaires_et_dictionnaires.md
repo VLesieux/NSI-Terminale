@@ -2,3 +2,413 @@
 
 
 ## Les structures de données abstraites
+
+Nous étudierons quatre types de données abstraites:
+- les structures linéaires : les listes, les piles et les files
+- les structures à clé : les dictionnaires
+- les structures hiérarchiques : les arbres
+- les structures relationnelles : les graphes
+
+Chaque structure de données présente un ensemble de routines permettant d'ajouter, d'effacer, d'accéder aux données. Cet ensemble de routines est appelé interface.
+4 routines élémentaires dites CRUD constituent une interface.
+
+- Create : ajouter une donnée
+- Read : lecture d'une donnée
+- Update : mise à jour de la donnée
+- Delete : supprime la donnée
+
+## Les structures linéaires
+
+### 1) Les listes
+
+**Définition** : Une liste est une structure de données permettant de regrouper des données et dont l'accès est séquentiel ; c'est une suite finie d'éléments repérés par leur rang. Les éléments sont ordonnés et leur place a une grande importance.
+Voici les opérations qui permettent de créer une liste :
+
+- INSERER(L,x,i) : elle permet d'insérer dans la liste L l'élément x au rang i en décalant d'un rang tous les éléments situés derrière lui. Condition : 1≤i≤Longueur(L)
+- SUPPRIMER(L,i) : elle permet de supprimer la donnée de la liste L située au rang i en décalant vers la gauche tous les éléments situés derrière lui.
+
+Attention : le type liste de Python ne correspond pas à ce type de structure de données. En Python, le type liste représente un tableau dynamique. D'ailleurs, le rang ne doit pas être confondu avec l'indice.
+
+**Représentation** : On peut créer une liste capable de contenir n éléments dans un tableau pouvant contenir n+1 éléments ; la première case d'indice 0 contient le nombre d'éléments présents dans la liste ; les cases suivantes du tableau contiennent les éléments de la liste ou sont vides.
+
+**Exemple d'application** :
+
+L=CREER_LISTE_VIDE()
+INSERER(L,'A',1)		
+
+<table>
+<tr>
+<td>1</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+INSERER(L,'O',2)
+
+<table>
+<tr>
+<td>2</td>
+<td>A</td>
+<td>O</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+INSERER(L,'B',1)
+
+<table>
+<tr>
+<td>3</td>
+<td>B</td>
+<td>A</td>
+<td>O</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+INSERER(L,'V',3)
+
+<table>
+<tr>
+<td>3</td>
+<td>B</td>
+<td>A</td>
+<td>V</td>
+<td>O</td>
+<td></td>
+</tr>
+</table>
+
+INSERER(L,'R',2)
+
+<table>
+<tr>
+<td>3</td>
+<td>B</td>
+<td>R</td>
+<td>A</td>
+<td>V</td>
+<td>O</td>
+</tr>
+</table>
+Au final L=('B','R','A','V','O').
+
+**Implémentation en Python** :
+
+```python
+def INSERER(L,element,i):
+    if (L[0]+1==len(L)) or (i>L[0]+1):
+# on ne peut plus insérer d'éléments si le nombre d'éléments L[0] est égal à la longueur de liste - 1
+        print("La liste est déjà pleine ou alors le rang n'est pas correct")
+        return False
+    else:
+        for k in range(L[0]+1,i,-1):
+            L[k]=L[k-1]
+# Lors de l'insertion tous les éléments postérieurs à i sont décalés d'un rang vers la droite
+        L[i]=element
+        L[0]=L[0]+1#Le nombre d'élément augmente d'une unité
+        return True
+    
+def SUPPRIMER(L,i):
+    if ((L[0]!=0) and (i<=L[0])):
+        for k in range(i,L[0],1):
+            L[k]=L[k+1]
+# Lors de la suppression tous les éléments postérieurs à i sont décalés vers la gauche
+        L[0]=L[0]-1#Le nombre d'élément diminue d'une unité
+        return True
+    else:
+        print("La liste est déjà vide ou alors le rang n'est pas correct")
+        return False
+
+Nb_places=5
+Ma_liste=[None]*(Nb_places+1)
+
+>>> Ma_liste
+[None, None, None, None, None, None]
+>>> Ma_liste[0]=0
+>>> Ma_liste
+[0, None, None, None, None, None]
+# La liste est initialisée et elle attend 5 éléments.
+>>> INSERER(Ma_liste,3,1)
+True
+>>> Ma_liste
+[1, 3, None, None, None, None]
+# L'élément 3 est inséré en position 1.
+>>> INSERER(Ma_liste,5,2)
+True
+>>> Ma_liste
+[2, 3, 5, None, None, None]
+# L'élément 5 est inséré en position 2.
+>>> INSERER(Ma_liste,8,1)
+True
+>>> Ma_liste
+[3, 8, 3, 5, None, None]
+# L'élément 8 est insérer en position 1.
+>>> SUPPRIMER(Ma_liste,2)
+True
+>>> Ma_liste
+[2, 8, 5, 5, None, None]
+# Le 5 en position 3 ne compte pas car le nombre d'éléments dans la liste est indiqué par L[0] qui vaut 2.
+>>> INSERER(Ma_liste,7,3)
+True
+>>> Ma_liste
+[3, 8, 5, 7, None, None]
+>>> INSERER(Ma_liste,8,4)
+True
+>>> Ma_liste
+[4, 8, 5, 7, 8, None]
+>>> INSERER(Ma_liste,9,5)
+True
+>>> Ma_liste
+[5, 8, 5, 7, 8, 9]
+>>> INSERER(Ma_liste,10,6)
+La liste est déjà pleine ou alors le rang n'est pas correct
+False
+
+```
+
+### 2) Les piles
+
+**Définition** : Il s'agit d'une structure de données qui donne accès en priorité aux dernières données ajoutées. Ainsi la dernière donnée ajoutée sera la première à en sortir ; on ne peut accéder qu'à l'objet situé au sommet de la pile. On décrit ce comportement par l'expression : "dernier entré, premier sorti" ou encore par l'acronyme : L.I.F.O : Last In First Out. 
+
+**Analogie**: le rangement des assiettes convient à cette description. En effet l'ordre dans lequel les assiettes sont dépilées est l'inverse de l'ordre dans lequel elles sont empilées puisque seule l'assiette supérieure est accessible.
+
+Les deux opérations élémentaires dont on a besoin pour cette structure sont : 
+
+- EMPILER(P,x) qui correspond à l'insertion de la donnée x au sommet de la pile.
+- DEPILER(P) qui consiste à retirer la dernière donnée de la pile P et la retourne si la pile n'est pas vide.
+
+**Représentation** : on peut réaliser une pile capable de contenir n éléments avec un tableau P[0...n] pouvant contenir (n+1) éléments :
+- la première case du tableau d'indice 0 contient l'indice de la prochaine case vide, c'est-à-dire l'indice qui correspondra au prochain élément à insérer dans la pile
+- les cases suivantes du tableau d'indices 1 à n contiennent les éléments de la pile ou sont vides. La dernière case non vide du tableau est le sommet de la pile.
+
+Remarques : si P[0]==1, la pile est vide car l'indice du prochain élément empilé sera 1.
+Si P[0]==n+1, la pile est pleine.
+
+**Exemple d'application** :
+
+P=CREER_PILE_VIDE()
+EMPILER(P,3)
+EMPILER(P,2)
+N=DEPILER(P)
+EMPILER(P,5)
+EMPILER(P,7)
+EMPILER(P,9)
+
+On obtient à la fin la pile P=(9,7,5,3) et N=2.
+
+Un exemple d'application pratique peut être l'historique d'un navigateur web ou la pile des pages visitées à partir de la même page du navigateur, quand on appuie sur le bouton pour revenir à la page précédente, la page qui vient est la dernière à avoir été insérée dans la pile.
+
+**Implémentation en Python** :
+
+```python
+def EMPILER(P,element):
+    if P[0]==len(P):
+        print("La pile est pleine")
+        return False
+    else:
+        i=P[0]
+        P[i]=element
+        P[0]=i+1
+        return True
+
+def DEPILER(P):
+    if P[0]!=1:
+        P[0]=P[0]-1
+        i=P[0]
+        return P[i]
+#dépiler renvoie la valeur situé à l'indice P[0]-1
+    else:
+        print("La pile est déjà vide")
+
+Nb_places=5
+Ma_pile=[None]*(Nb_places+1)
+>>> Ma_pile
+[None, None, None, None, None, None]
+>>> Ma_pile[0]=1#l'indice de la prochaine case vide est 1
+>>> Ma_pile
+[1, None, None, None, None, None]
+>>> EMPILER(Ma_pile,8)
+True
+>>> Ma_pile
+[2, 8, None, None, None, None]
+>>> EMPILER(Ma_pile,3)
+True
+>>> Ma_pile
+[3, 8, 3, None, None, None]
+>>> EMPILER(Ma_pile,5)
+True
+>>> Ma_pile
+[4, 8, 3, 5, None, None]
+>>> DEPILER(Ma_pile)
+5
+>>> Ma_pile
+[3, 8, 3, 5, None, None]
+#Bien que 5 apparaisse encore, l'indice du prochain élément empilé sera bien 3.
+>>> EMPILER(Ma_pile,7)
+True
+>>> Ma_pile
+[4, 8, 3, 7, None, None]
+>>> EMPILER(Ma_pile,2)
+True
+>>> Ma_pile
+[5, 8, 3, 7, 2, None]
+>>> EMPILER(Ma_pile,6)
+True
+>>> Ma_pile
+[6, 8, 3, 7, 2, 6]
+>>> EMPILER(Ma_pile,4)
+La pile est pleine#la pile est pleine car l'indice de la prochaine case vide P[0]=6 correspond à la longueur de la pile : len(P)=6.
+False
+```
+
+### 3) Les files
+
+**Définition** : Une file est une structure de données dans laquelle on accède aux éléments suivant la règle du premier arrivé premier sorti. Autrement dit, on ne peut accéder qu'à l'élément situé au début de la fille. On décrit ce comportement par l'expression "premier entré, premier sorti" ou encore l'acronyme F.I.F.O : first in, first out. La file comporte une tête et une queue.
+
+**Analogie**: La file de client qui attend au guichet ou à une caisse convient à cette description. En effet le client qui passe en premier est celui qui arrive en premier.
+Enfiler signifie ajouter un élément à la queue.
+Défiler signifie retirer la tête de la file.
+
+**Représentation** : On peut par exemple réaliser une file capable de contenir n éléments avec un tableau F[0..(n+2)] pouvant contenir (n+3) éléments :
+- la première case d'indice 0 du tableau contient l'indice de la tête de la file
+- la deuxième case d'indice 1 du tableau contient l'indice de la queue de la file, c'est-à-dire la prochaine case disponible pour la queue
+- la troisième case d'indice 2 du tableau contient le nombre d'éléments présents dans la file.
+- les cases suivantes du tableau (d'indices 3 à n+2) contiennent les éléments de la file ou sont vides.
+
+**Exemple d'application** : 
+
+La représentation d'une file dont la tête est 8, la queue est 5 et la taille est 3.
+
+<table>
+<tr>
+<td>Indice de tête</td>
+<td>Indice de queue</td>
+<td>Taille</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+<td>3</td>
+<td>8</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</table>
+
+Remarques : 
+- À chaque fois qu'on empile un élément on augmente la taille de la file d'une unité ainsi que l'indice de la queue.
+- À chaque fois qu'on défile, on diminue la taille de la file d'une unité et on augmente l'indice de la tête d'une unité.
+- Dès que les indices de la tête ou de la queue dépassent la longueur du tableau, ils repartent au début du tableau ; on parle de tableau à gestion circulaire.
+
+Un exemple d'application pratique serait la file des documents à traiter par une imprimante ; le premier document à être traité par l'imprimante est le premier à être entré dans la file.
+
+**Implémentation en Python** :
+
+```python
+def ENFILER(F,element):
+    queue=F[1]
+    taille=F[2]
+    if taille==len(F)-3:
+        print("La file est déjà pleine")
+        return False
+    else:
+        F[queue]=element
+        if queue==len(F)-1:
+            queue=3
+        else:
+            queue+=1
+        taille+=1
+        F[2]=taille
+        F[1]=queue
+        return True
+
+def DEFILER(F):
+    tete=F[0]
+    taille=F[2]
+    if taille==0:
+        print("La file est déjà vide")
+    else:
+        element=F[tete]
+        if tete==(len(F)-1):
+            tete=3
+        else:
+            tete+=1
+        taille -=1
+        F[2]=taille
+        F[0]=tete
+        return element
+    
+Nb_places=5
+Ma_file=[None]*(Nb_places+3)
+Ma_file[0]=3
+Ma_file[1]=3
+Ma_file[2]=0
+>>> Ma_file
+[3, 3, 0, None, None, None, None, None]
+>>> ENFILER(Ma_file,8)
+True
+>>> Ma_file
+[3, 4, 1, 8, None, None, None, None]
+>>> ENFILER(Ma_file,3)
+True
+>>> Ma_file
+[3, 5, 2, 8, 3, None, None, None]
+>>> ENFILER(Ma_file,5)
+True
+>>> Ma_file
+[3, 6, 3, 8, 3, 5, None, None]
+>>> DEFILER(Ma_file)
+8
+>>> Ma_file
+[4, 6, 2, 8, 3, 5, None, None]
+#La taille de la file a diminué d'une unité passant de 3 à 2, l'indice de la tête a augmenté d'une unité passant de 3 à 4, l'indice de la queue n'a pas changé restant égal à 6
+>>> ENFILER(Ma_file,16)
+True
+>>> Ma_file
+[4, 7, 3, 8, 3, 5, 16, None]
+>>> ENFILER(Ma_file,12)
+True
+>>> Ma_file
+[4, 3, 4, 8, 3, 5, 16, 12]
+>>> ENFILER(Ma_file,14)
+True
+>>> Ma_file
+[4, 4, 5, 14, 3, 5, 16, 12]
+#Comme le tableau est plein, on réenfile au début.
+
+```
+
+### 4) Les dictionnaires
+
+**Définition** : Un dictionnaire est une structure de données qui permet d'associer une valeur à une clé. Cette clé peut être un mot ou un entier. L'ensemble clé-valeur constitue une entrée. Contrairement aux listes, les dictionnaires n'ont pas d'ordre, on ne peut pas retrouver un élément via sa position, mais uniquement via sa clé.
+
+**Analogie**: Cette structure de donnée est appelée dictionnaire car dans un dictionnaire on associer à un mot (la clé) sa définition (la valeur).
+
+Python possède nativement cette structure de données, ce qui n'est pas forcément vrai dans d'autres langages de programmation.
+
+**Exemple d'application** : Un annuaire téléphone est un exemple de dictionnaire qui associe un numéro de téléphone : la valeur à un nom : la clé.
+
+L'implémentation a déjà été vue en première, pour rappel :
+
+**Implémentation en Python** :
+
+```python
+Mon_dictionnaire={"nom":"Toto","age":28}
+>>> Mon_dictionnaire["age"]
+28
+>>> Mon_dictionnaire["nom"]
+'Toto'
+```
+
+
