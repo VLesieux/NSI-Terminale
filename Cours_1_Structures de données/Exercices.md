@@ -61,6 +61,8 @@ Par exemple :
 ```python
 >>> VERIFIER_PARENTHESES('(())()')
 '(1,2)(0,3)(4,5)'
+>>> VERIFIER_PARENTHESES('(()()')
+Le parenthésage n'est pas correct
 ```
 On utilisera l'implémentation de la pile de l'exercice précédent.
 
