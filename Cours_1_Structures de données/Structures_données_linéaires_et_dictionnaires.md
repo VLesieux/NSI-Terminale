@@ -29,7 +29,10 @@ Voici les opérations qui permettent de créer une liste :
 
 Attention : le type liste de Python ne correspond pas à ce type de structure de données. En Python, le type liste représente un tableau dynamique. D'ailleurs, le rang ne doit pas être confondu avec l'indice.
 
-**Représentation** : On peut créer une liste capable de contenir n éléments dans un tableau pouvant contenir n+1 éléments ; la première case d'indice 0 contient le nombre d'éléments présents dans la liste ; les cases suivantes du tableau contiennent les éléments de la liste ou sont vides.
+**Représentation** : On peut créer une liste capable de contenir n éléments dans un tableau pouvant contenir n+1 éléments : 
+
+- la première case d'indice 0 contient le nombre d'éléments présents dans la liste 
+- les cases suivantes du tableau contiennent les éléments de la liste ou sont vides.
 
 **Exemple d'application** :
 
@@ -103,7 +106,18 @@ Au final L=('B','R','A','V','O').
 **Implémentation en Python** :
 
 ```python
+def CREER_LISTE_VIDE(Nb_places):
+    """
+    Crée et initialie une liste vide pouvant accueillir Nb_places éléments
+    """
+    liste=[None]*(Nb_places+1)
+    liste[0]=0#initialisation nécessaire
+    return liste
+  
 def INSERER(L,element,i):
+    """
+    Insère un élément dans la liste L au rang i
+    """
     if (L[0]+1==len(L)) or (i>L[0]+1):
 # on ne peut plus insérer d'éléments si le nombre d'éléments L[0] est égal à la longueur de liste - 1
         print("La liste est déjà pleine ou alors le rang n'est pas correct")
@@ -117,6 +131,9 @@ def INSERER(L,element,i):
         return True
     
 def SUPPRIMER(L,i):
+    """
+    Supprime de la liste L l'élément au rang i
+    """
     if ((L[0]!=0) and (i<=L[0])):
         for k in range(i,L[0],1):
             L[k]=L[k+1]
@@ -126,10 +143,14 @@ def SUPPRIMER(L,i):
     else:
         print("La liste est déjà vide ou alors le rang n'est pas correct")
         return False
-
-Nb_places=5
-Ma_liste=[None]*(Nb_places+1)
-
+      
+def LIRE(L,i):
+    """
+    Renvoie l'élément de rang i
+    """
+    return L[i]
+  
+>>> Ma_liste=CREER_LISTE_VIDE(5)
 >>> Ma_liste
 [None, None, None, None, None, None]
 >>> Ma_liste[0]=0
@@ -209,7 +230,18 @@ Un exemple d'application pratique peut être l'historique d'un navigateur web ou
 **Implémentation en Python** :
 
 ```python
+def CREER_PILE_VIDE(Nb_places):
+    """
+    Crée et initialise une pile vide pouvant accueillir Nb_places éléments
+    """
+   pile=[None]*(Nb_places+1)
+   pile[0]=1#initialisation
+   return pile
+
 def EMPILER(P,element):
+    """
+    Empile un élèment
+    """
     if P[0]==len(P):
         print("La pile est pleine")
         return False
@@ -220,6 +252,9 @@ def EMPILER(P,element):
         return True
 
 def DEPILER(P):
+    """
+    Dépile en retirant le dernier élément arrivé
+    """
     if P[0]!=1:
         P[0]=P[0]-1
         i=P[0]
@@ -228,11 +263,7 @@ def DEPILER(P):
     else:
         print("La pile est déjà vide")
 
-Nb_places=5
-Ma_pile=[None]*(Nb_places+1)
->>> Ma_pile
-[None, None, None, None, None, None]
->>> Ma_pile[0]=1#l'indice de la prochaine case vide est 1
+>>> Ma_pile=CREER_PILE_VIDE(5)
 >>> Ma_pile
 [1, None, None, None, None, None]
 >>> EMPILER(Ma_pile,8)
@@ -285,7 +316,9 @@ Défiler signifie retirer la tête de la file.
 
 **Exemple d'application** : 
 
-La représentation d'une file dont la tête est 8, la queue est 5 et la taille est 3.
+La représentation d'une file dont la tête est 8, la queue est 5 et la taille est 3. 
+
+L'enfilage se fait par la droite.
 
 <table>
 <tr>
@@ -316,7 +349,20 @@ Un exemple d'application pratique serait la file des documents à traiter par un
 **Implémentation en Python** :
 
 ```python
+def CREER_FILE_VIDE(Nb_places):
+    """
+    Crée et initialise une file
+    """
+    Ma_file=[None]*(Nb_places+3)
+    Ma_file[0]=3
+    Ma_file[1]=3
+    Ma_file[2]=0
+    return Ma_file
+
 def ENFILER(F,element):
+    """
+    Enfile un élément
+    """
     queue=F[1]
     taille=F[2]
     if taille==len(F)-3:
@@ -334,6 +380,9 @@ def ENFILER(F,element):
         return True
 
 def DEFILER(F):
+    """
+    Défile en retirant le premier élément entré dans la file
+    """
     tete=F[0]
     taille=F[2]
     if taille==0:
@@ -349,11 +398,7 @@ def DEFILER(F):
         F[0]=tete
         return element
     
-Nb_places=5
-Ma_file=[None]*(Nb_places+3)
-Ma_file[0]=3
-Ma_file[1]=3
-Ma_file[2]=0
+>>> Ma_file=CREER_FILE_VIDE(5)
 >>> Ma_file
 [3, 3, 0, None, None, None, None, None]
 >>> ENFILER(Ma_file,8)
