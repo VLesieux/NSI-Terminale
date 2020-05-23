@@ -15,7 +15,7 @@ Exemple : l'arbre ci-dessous possède 11 noeuds dont :
 - 3 noeuds internes B, D et I
 - 7 feuilles et donc 7 branches
 
-![](assets/arbre_exemple.png)
+![](Assets/arbre_exemple.png)
 
 Un arbre peut être caractérisé par :
 - son **arité** : le nombre maximal d'enfant qu'un noeud peut avoir
@@ -50,7 +50,7 @@ Ces mesures seront utiles pour déterminer la complexité des algorithmes appliq
 
 Mettons en pratique ces opérations sur l'arbre binaire suivant appelé α.
 
-![](assets/exemple_arbre_binaire_operations.png)
+![](Assets/exemple_arbre_binaire_operations.png)
 
 Donnons d'abord quelques caractéristiques de l'arbre α :
 
@@ -94,6 +94,6 @@ C=CREER_ARBRE(3,B,A)
 D=CREER_ARBRE_FEUILLE(2)
 E=CREER_ARBRE(1,D,C)
 
- <img src="assets/exemple_type_abstrait_arbre.png" width="400" height="400"> 
+ <img src="Assets/exemple_type_abstrait_arbre.png" width="400" height="400"> 
 
 
