@@ -94,6 +94,6 @@ C=CREER_ARBRE(3,B,A).
 D=CREER_ARBRE_FEUILLE(2).   
 E=CREER_ARBRE(1,D,C).   
 
- <img src="Assets/exemple_type_abstrait_arbre.png" width="400" height="400"> 
+ <img src="Assets/exemple_type_abstrait_arbre_detail.png" width="400" height="400"> 
 
 
