@@ -175,8 +175,6 @@ Nous allons maintenant créer une nouvelle classe JeuDeCarte. L'objet jeu_de_car
 ```
 from exemple_classe import Carte
 
-ma_carte=Carte(11,"Trèfle")
-
 import random
 
 class JeuDeCarte:
