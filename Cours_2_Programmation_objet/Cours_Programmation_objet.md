@@ -1,4 +1,4 @@
-# Initiation à la programmation orientée objet
+# Initiation à la Programmation Orientée Objet
 
 
 ## Introduction
