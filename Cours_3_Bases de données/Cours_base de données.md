@@ -99,13 +99,12 @@ Une association est à minima caractérisée par :
 - deux **cardinalités** : elles sont présentes sur les deux extrémités du lien ; chaque cardinalité est un couple de valeurs (mini,maxi) qui traduisent deux règles de gestion (une par sens).
 
 Dans l'exemple suivant, on définit une association intitulée " Être originaire de " entre les entités "Auteur" et "Pays". 
-![Programme officiel ](assets/Association_base.png)
 
+ <img src="assets/Association_base.png" width="300" height="300"> 
 
 La cardinalité dans le sens Auteur-Pays vaut (1,1) car au minimum comme au maximum un auteur n'est originaire que d'un seul pays.
 La cardinalité dans le sens Pays-Auteur vaut (0,n) car au minimum le pays ne peut avoir aucun auteur et au maximum un nombre non défini d'auteurs.
 
 Le schéma ci-dessous montre comment il est possible d'élaborer le **schéma conceptuel des données** pour une gestion de livres.
 
-![Programme officiel ](assets/Association_gestion_livres.png)
-
+ <img src="assets/Association_gestion_livres.png" width="500" height="500"> 
