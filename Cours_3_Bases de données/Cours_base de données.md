@@ -100,7 +100,7 @@ Une association est à minima caractérisée par :
 
 Dans l'exemple suivant, on définit une association intitulée " Être originaire de " entre les entités "Auteur" et "Pays". 
 
- <img src="assets/Association_base.png" width="500" height="300"> 
+ <img src="assets/Association_base.png" width="400" height="300"> 
 
 La cardinalité dans le sens Auteur-Pays vaut (1,1) car au minimum comme au maximum un auteur n'est originaire que d'un seul pays.
 La cardinalité dans le sens Pays-Auteur vaut (0,n) car au minimum le pays ne peut avoir aucun auteur et au maximum un nombre non défini d'auteurs.
