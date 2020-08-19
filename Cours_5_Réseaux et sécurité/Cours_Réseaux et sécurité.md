@@ -153,10 +153,11 @@ La structure d'une table de routage RIP est simple, contenant 4 champs pour déf
 </tr>
 <tr>
 <td>.....</td><td>....</td><td>.....</td><td>1</td>
+</tr>
 <tr>
 <td>Autres</td><td>Routeur suivant 3</td><td>Interface 5</td><td>1</td>
 </tr>
-</tr>
+</table>
 
 L'algorithme utilisé par RIP est relativement simple ; il consiste à rechercher dans la table de routage la meilleure route vers le destinataire voulu :
 
