@@ -58,29 +58,35 @@ Le protocole IP propose un service :
 Pour permettre le transport des datagrammes, chacun des éléments d'une infrastructure (hôtes, serveurs, périphériques, objets connectés, commutateurs administrables, routeurs...) doit posséder une adresse unique sur le réseau : son adresse IP.
 L'adresse IP est utilisée :
 - pour identifier chaque élément dans l'infrastructure. 
+
 - pour réaliser le routage des datagrammes IP dans celles-ci. 
-L'adresse IP d'un ordinateur est une suite de 32 bits (soit 4 octets) habituellement représentée en notation décimale pointée, de la forme x1.x2.x3.x4. 
-Ces quatre octets regroupent :
+  L'adresse IP d'un ordinateur est une suite de 32 bits (soit 4 octets) habituellement représentée en notation décimale pointée, de la forme x1.x2.x3.x4. 
+  Ces quatre octets regroupent :
+
 - l'identifiant du réseau auquel appartient l'ordinateur appelé le rID ou ID Réseau : 0 pour la classe A, 10 pour la classe B, 110 pour la classe C, 1110 pour la classe D, 11110 pour la classe E.  
+
 - l'identifiant de l'ordinateur à l'intérieur du réseau : oID ou ID Hôte.
-Les adresses IP sont divisées en 5 classes, notées classes A à classe E, définies par le premier octet de l'adresse. 
-Les différentes classes sont décrites dans le schéma ci-dessous.
+
+  Les adresses IP sont divisées en 5 classes, notées classes A à classe E, définies par le premier octet de l'adresse. 
+  Les différentes classes sont décrites dans le schéma ci-dessous.
 
 <img width="400" height="400" src="assets/adressesIP_classes.png">
 
 
 La **classe A** regroupe un petit nombre de très grands réseaux (réseaux nationaux, gouvernementaux, armées, grands opérateurs de télécommunications...) : exactement 2<sup>7</sup> réseaux. Notons qu'il n'y a plus aujourd'hui d'adresse de classe A disponible pour des réseaux qui en auraient la nécessité ; les adresses de classe A comptent 2<sup>24</sup>-2 soit 16 777 216 hôtes. Le dernier octet va en effet de 1 à 254.
-Les adresses de réseaux de **classe B** sont plus nombreuses. Elles comportent  2<sup>14</sup>=16384 réseaux et elles permettent d'identifier des réseaux de taille relativement importante (jusqu'à 65 534 éléments adressables :2<sup>16</sup>-2 ). Leur nombre est cependant restreint et comme pour les adresses de classe A, les adresses de classe B sont actuellement totalement attribuées. 
+
+Les adresses de réseaux de **classe B** sont plus nombreuses. Elles comportent  2<sup>14</sup>=16384 réseaux et elles permettent d'identifier des réseaux de taille relativement importante (jusqu'à 65 534 éléments adressables :2<sup>16</sup>-2 ). Leur nombre est cependant restreint et comme pour les adresses de classe A, les adresses de classe B sont actuellement totalement attribuées.
+
 Les adresses de **classe C** sont destinées aux réseaux locaux qui ne comptent qu'un nombre peu élevé d'ordinateurs (254 au maximum) ; il y a 2<sup>21</sup>=2 097 152 réseaux.
 Au niveau mondial les adresses IP sont réparties par l'IANA (Internet Assigned Numbers Authority) entre les différents registres régionaux d'adresses Internet ou RIR (Regional Internet Registries) représentant chacune une zone géographique du monde.
-Certaines adresses, par exemple 192.168.0.0 à 192.168.255.0, sont des adresses réservées destinées aux réseaux locaux.
+Certaines adresses, par exemple 192.168.0.0 à 192.168.255.0, sont des adresses réservées destinées aux réseaux locaux. Exemple : l'adresse 192.8.13.20  est une adresse de classe C où 20 est l'identifiant de l'hôte dans le réseau.
 
 
 ## Le routage
 
 ### Mode non connecté et mode connecté
 
-En **mode non connecté**, les données envoyées par la machine source sont découpées en paquets avant leur envoi. Ces paquets (les datagrammes) sont alors acheminés dans le réseau indépendanmment les uns des autres.
+En **mode non connecté**, les données envoyées par la machine source sont découpées en paquets avant leur envoi. Ces paquets ou datagrammes sont alors acheminés dans le réseau indépendanmment les uns des autres.
 Dans le cas d'une transmission de données en mode non connecté, aucun contrôle sur le flux d'information n'est effectué. En effet, les données sont émises sans évaluation préalable du traffic ou de la qualité du transfert. C'est le cas pour les transferts de données sur Internet, basés sur des services de niveau réseau sans connexion et non fiable.
 
 > Mode non connecté : certaines applications ne requièrent pas d'établir une connexion avant le début d'un échange : elles fonctionnent en mode non connecté : l'émetteur envoie les données sur le support de transmission et c'est ce dernier qui est en charge de les remettre au destinataire. Remarquons que l'émetteur ne dispose, lorsqu'il soumet le message au réseau, d'aucune information concernant :
@@ -99,8 +105,10 @@ Exemples : la prise en main à distance (effectuer des tâches sur un poste de t
 
 ### Principe de routage
 
-Un algorithme de routage a pour rôle d'acheminer un datagramme à travers le réseau. Une telle fonction ne peut donc pas être centralisée, mais doit être présente dans chaque noeud du maillage. Elle doit, pour chaque paquet parvenant au noeud sur l'un de ses ports, choisir sur quel port de sortie l'orienter.
+Un algorithme de routage a pour rôle d'acheminer un datagramme à travers le réseau. Une telle fonction ne peut donc pas être centralisée, mais doit être présente dans chaque noeud du maillage. Elle doit, pour chaque paquet parvenant au noeud sur l'un de ses ports, choisir sur quel port de sortie l'orienter.  
+
 De manière évidente, un algorithme de routage doit être :
+
 - **déterministe** : face à une situation donnée, une solution unique doit être fournie : aucun choix n'est laissée à l'utilisateur ou au hasard.
 - **rapide** : en toutes circonstances, il doit être en mesure définir rapidement une route.
 - **équitable** entre les utilisateurs, dont le nombre peut être très important.
@@ -108,22 +116,29 @@ De manière évidente, un algorithme de routage doit être :
 - **optimisé** : il doit proposer le meilleur chemin possible (en temps, en distance, en encombrement...)
 
 Les algorithmes de routages peuvent être divisés en deux familles principales :
+
 - les **algorithmes non adaptatifs** utilisent un ensemble de routes statiques mises en place par une étude préliminaire. Ils ne tiennent pas en compte de l'état des lignes de transmission au moment de l'envoi du datagramme
 - les **algorithmes adaptatifs** précèdent tout envoi de données d'une étude du contexte. Ces algorithmes se basent sur l'observation directe du maillage du réseau ou du trafic sur les lignes à un instant donné. On parle ici de routage dynamique. Les techniques mises en oeuvre sont plus complexes mais sont justififées par les performances obtenues.
 
 ### Types d'algorithmes
 
 - Le **routage par inondation** (flooding) est la technique utilisée en mode diffusion. Lorsqu'un datagramme est reçu par un routeur sur l'un de ses ports, il est réémis sur tous les autres ports. De manière évidente, cette méthode engendre un trafic très important sur la totalité des lignes de transmission. Elle ne convient donc pas à des réseaux de taille élevée ou possédant un grand nombre de noeuds.
+
 - Le **routage du plus court chemin** : un réseau maillé peut être représenté par un graphe G=(X,E) dont l'ensemble des sommets X regroupe les routeurs et l'ensemble des arêtes E contient les lignes de transmission. Un chemin entre deux routeurs correspond alors à une chaîne de G, c'est-à-dire à une suite alternée de sommets et d'arêtes. Il est possible d'associer un coût à chaque arête : le réseau peut ainsi être assimilé à un graphe évalué. La recherche du plus court chemin consiste alors à trouver la chaîne dont la somme des arêtes est minimale : ce coût minimal pourra correspondre, en fonction du critère important dans une situation précise, au nombre de routeurs traversés, à la distance géographique ou au trafic sur un chemin...). Le protocole OSPF est basé sur le coût de chaque lien, utilisé pour calculer le coût global du chemin par l'algorithme de Dijkstra.
+
 - Le **routage à vecteur de distance** : créé initiallement pour les réseaux locaux Netware de Novell, puis utilisé par Internet, le routage à vecteur de distance est l'un des premiers algorithmes dynamiques.Chaque élément actif possède en mémoire une table de routage qui lui est propre. Cette structure lui indique, pour chacune des destinations connues, le port de sortie à utiliser, ainsi qu'un port par défaut pour les destinations inconnues. Des communications inter-routeurs permettent de mettre à jour régulièrement la table de routage de chaque routeur à partir des connaissances de ses voisins. Pour le routage dans Internet, cette technique a atteint ses limites car les tales des routeurs peuvent contenir de très nombreuses entrées, et donc entraîner des pertes de temps trop importantes pour parcourir ces tables lors de la recherche d'un destinataire.  
+
 - Le **routage hiérarchique** est basé sur la technique de routage à vecteur de distance mais une réflexion sur la structure des tables de routage a été menée dans le but de limiter le nombre d'entrées à consulter lors de la recherche d'un destinataire.
 La solution consiste à diviser le réseau en plusieurs zones géographiques appelées régions. Chaque routeur va alors posséder dans sa table trois types de données :
+
 	- les ports de sortie à emprunter pour accéder à chaque destinataire situé dans sa région
 	- les ports de sortie permettant d'accéder à chacune des autres régions du réseau
 	- un port de sortie à utiliser par défaut pour une adresse de destinataire inconnu. 
 	
 	Une telle technique peut être améliorée en mettant en place plusieurs découpages hiérarchiques successifs, c'est-à-dire en divisant chaque zone en plusieurs sous-zones et ceci répété plusieurs fois. Le routage à vecteur de distance sur lequel est basé l'algorithme de routage RIP utilisé sur Internet intègre cette notion de hiérarchie.
+	
 - Le **routage dans les réseaux sans fil** : dans un réseau sans fil, une difficulté supplémentaire apparaît pour effectuer le routage : les ordinateurs mobiles se déplacent géographiquement à travers le réseau et sont associés pour une durée limitée à un point d'accès sans fil (on appelle cellule la zone géographique correspondant au point d'accès sans fil). Le routage adapté à ces changements de cellules nécessite un algorithme particulier.
+
 	1) Initialement, chaque mobile est associé à un point d'accès de rattachement 
 	2) Lorsqu'un mobile arrive dans une nouvelle cellule, il demande sa connexion à la station de base correspondante. Cette phase de connexion nécessite un échange avec sa cellule de rattachement.
 	3) La station de base de rattachement enregistre la localisation du mobile dans une table de routage. De même, celle de la nouvelle cellule enregistre l'adresse du mobile dans une table (possédant autant d'entrées qu'il y a de mobiles dans la cellule à cet instant).
@@ -135,11 +150,15 @@ Une fois les datagrammes créés, ils sont transmis sur le réseau par la machin
 Le protocole IP dispose d'une méthode spécifique de routage : le protocole RIP (Routing Information Protocol).
 RIP est un algorithme de routage par sauts successifs (Next-Hop Routing) : cette méthode spécifie qu'un routeur ne connaît pas le chemin que va emprunter un datagramme, mais seulement le routeur suivant à qui ce datagramme va être transmis.
 Le principe consiste à intégrer à chaque routeur une table de routage proposant le routeur suivant pour chaque destinataire (quelque soit sa nature : machine, réseau, adresse inconnue).
-La structure d'une table de routage RIP est simple, contenant 4 champs pour définir une route :
-- la **destination** du datagramme est une adresse IP (d'un hôte, d'un réseau ou d'un routeur de sortie par défaut)
+
+La structure d'une **table de routage RIP** est simple, contenant 4 champs pour définir une route :
+
+- l'**adresse de destination** du datagramme est une adresse IP (d'un hôte, d'un réseau ou d'un routeur de sortie par défaut)
 - le **routeur de saut suivant (passerelle)** qui permettra au datagramme d'accéder à un autre réseau (cette adresse est le routeur lui-même si le destinataire est situé sur un réseau directement accessible via une des ses interfaces).
 - l'adresse de l'**interface** du routeur à utiliser pour pouvoir accéder au routeur de saut suivant
 - la valeur du **vecteur de distance** qui correspond au nombre de sauts à effectuer avant d'atteindre le réseau de la machine destinataire du datagramme. On appelle cette valeur la **métrique** de la route.
+
+Le message RIP est émis par chaque routeur pour transmettre à ses voisins la liste des destinataires (hôtes ou réseaux) pour lesquels il possède une route dans sa table.
 
 <table>
 <tr>
@@ -282,14 +301,14 @@ Pour mettre en place une communication sécurisée, plusieurs techniques sont co
 - la gestion d'**autorisations** : il est possible d'appliquer des droits aux utilisateurs, selon la stratégie de sécurité définie pour chaque nature de communication.
 
 ### Principes de chiffrement
-  
+
 Le principe de base de la sécurisation d'une communication consiste à modifier la donnée qui doit être transmise (le chiffrement) de façon à ce que toute personne qui l'intercepterait ne pourrait pas en comprendre le sens. Seul le destinataire va pouvoir retrouver la donnée initiale (le déchiffrement) et la lire.
 Les méthodes de chiffrement sont basées sur l'utilisation de clés (des chaînes de caractères numériques) qui vont, par l'application d'algorithmes spécialisés, permettre de chiffrer ou déchiffrer des messages.
 
 > Le chiffrement d'un message consiste à le modifier pour le rendre illisible par une personne qui n'y est pas autorisée. Le chiffrement (puis le déchiffrement) est effectué par l'application au message initial d'une fonction mathématique, basée sur une donnée convenue entre les deux extrémités appelée clé de chiffrement.
 
 Dans ce domaine, deux principales techniques sont disponibles : le chiffrement symétrique ou asymétrique. Les protocoles actuels utilisent selon leur nature l'une ou l'autre, ou la combinaison des deux méthodes (HTTPS, le protocole de base du Web par exemple).
-  
+
 
 ### Chiffrement symétrique
 
