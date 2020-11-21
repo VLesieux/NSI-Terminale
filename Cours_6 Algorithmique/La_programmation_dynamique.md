@@ -304,6 +304,7 @@ Dans le tableau ci-dessous, on suppose que les objets ont été triés initialem
 <tr>
 <td>valeur</td><td>1</td><td>6</td><td>22</td><td>18</td><td>28</td>
 </tr>
+</table>
 
 Rappel de l'algorithme glouton : cet algorithme ne donne pas forcèment le résultat optimal mais il a le mérite de proposer une solution ; il consiste à placer d'abord l'objet de plus grande valeur de poids P1 inférieur à P puis à prendre parmi les objets restants celui de plus grande valeur dont le poids est inférieur à P-P1, etc....
 
