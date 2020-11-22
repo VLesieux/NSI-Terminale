@@ -447,3 +447,94 @@ On observe que l'intérêt glouton correspond ici à l'intérêt optimal :
 >>> interet_max_mem(5,15,lpoids,lvaleurs)
 57
 ```
+
+3. Exemple n°4 d'application : la pyramide des nombres
+
+Soit la pyramide des nombres ci-dessous :
+
+<img height="400px" width="400px" src="assets/pyramide.png">
+
+On part du sommet de la pyramide et on cherche à optimiser le chemin qui atteint la base de la pyramide.
+
+On se donne la table :
+
+table = [ [5], [8, 10 ], [11, 3, 4], [6, 10, 7, 12 ]]
+
+
+On cherche à écrire une fonction récursive permettant le calcul du gain maximal.
+
+Soit G(l,r) le gain maximum du nombre situé à la l-ème ligne et la r-ème colonne.
+
+
+On a : `G(l,r)=table[l][r]+max(G(l+1,r),G(l+1,r+1))`
+
+Avec `G(l,r)=table[n-1][r]` si l=n-1
+
+
+Ce qui peut s'implémenter en Python :
+
+```python
+tab = [ [5], [8, 10 ], [11, 3, 4], [6, 10, 7, 12 ]]
+
+def gain_max(t,l,r):
+    """Renvoie le gain maximal
+    : param tableau : liste
+    : return : int
+    >>> gain_max(tab,0,0)
+    34
+    """
+    n=len(t)
+    if l==n-1:
+        return t[l][r]
+    else:
+        return t[l][r]+max(gain_max(t,l+1,r),gain_max(t,l+1,r+1))    
+```
+    
+En utilisant la programmation dynamique, sur le même schéma que précédemment :
+
+```python
+def gain_max_mem(t,l,r,mem=None):
+    """Renvoie le gain maximal
+    : param tableau : liste
+    : return : int
+    >>> gain_max_mem(tab,0,0)
+    34
+    """
+    n=len(t)
+    if mem == None:
+        mem = [[0 for _ in range(n)] for _ in range(n)]
+    if mem[l][r] !=0:
+        res=mem[l][r]
+    else:
+        if l<n-1:
+            res=t[l][r]+max(gain_max_mem(t,l+1,r),gain_max_mem(t,l+1,r+1))
+        else:
+            res=t[l][r]
+        mem[l][r]=res
+#        print(mem)
+    return res
+```
+
+En affichant la liste de stockage avec print(mem), on obtient :
+
+```python
+>>> gain_max_mem(tab,0,0)
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [6, 0, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 10, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [21, 0, 0, 0], [0, 0, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 10, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 7, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 13, 0, 0], [0, 0, 0, 0]]
+[[0, 0, 0, 0], [29, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 10, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 7, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 13, 0, 0], [0, 0, 0, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 7, 0]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 12]]
+[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 16, 0], [0, 0, 0, 0]]
+[[0, 0, 0, 0], [0, 26, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+[[34, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+34
+```
+À partir de cette affichage, on peut, en localisant les valeurs des maximums et en les ordonnant trouver le chemin qui conduit à la plus grande valeur 34, en l'occurence le chemin [5,8,11,10].
+
