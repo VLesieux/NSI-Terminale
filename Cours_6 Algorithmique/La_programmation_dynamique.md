@@ -448,7 +448,7 @@ On observe que l'intérêt glouton correspond ici à l'intérêt optimal :
 57
 ```
 
-3. Exemple n°4 d'application : la pyramide des nombres
+3. Exemple n°3 d'application : la pyramide des nombres
 
 Soit la pyramide des nombres ci-dessous :
 
