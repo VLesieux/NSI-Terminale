@@ -536,5 +536,5 @@ En affichant la liste de stockage avec print(mem), on obtient :
 [[34, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 34
 ```
-À partir de cette affichage, on peut, en localisant les valeurs des maximums et en les ordonnant trouver le chemin qui conduit à la plus grande valeur 34, en l'occurence le chemin [5,8,11,10].
+À partir de cet affichage, on peut, en localisant les valeurs des maximums et en les ordonnant trouver le chemin qui conduit à la plus grande valeur 34, en l'occurence le chemin [5,8,11,10].
 
