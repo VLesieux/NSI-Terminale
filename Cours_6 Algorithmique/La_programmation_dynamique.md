@@ -13,7 +13,7 @@ u<sub>2</sub>=u<sub>1</sub>+u<sub>0</sub>=1+0=1.
 u<sub>3</sub>=u<sub>2</sub>+u<sub>1</sub>=1+1=2. 
 u<sub>4</sub>=u<sub>3</sub>+u<sub>2</sub>=2+1=3....etc...
 
-La mise en oeuvre du calcul du nième terme de la suite de Fibonacci peut se faire en Python de différentes méthodes.
+La mise en œuvre du calcul du nième terme de la suite de Fibonacci peut se faire en Python de différentes méthodes.
 
 
 1ère méthode : **méthode itérative**
