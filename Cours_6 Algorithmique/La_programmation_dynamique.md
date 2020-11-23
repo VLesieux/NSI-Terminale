@@ -461,6 +461,30 @@ On se donne la table :
 table = [ [5], [8, 10 ], [11, 3, 4], [6, 10, 7, 12 ]]
 
 
+a. Méthode itérative
+
+Une première méthode peut être itérative. 
+Évaluons le nombre d'opérations effectué dans ce cas.
+Pour chaque valeur de i allant de n-2 à 0, correspondant aux niveaux que nous parcourons de bas en haut, nous avons i+1 comparaisons et i+1 additions. Le total est donc (n-1)+(n-2)+...+1 comparaisons et autant d'additions, soit n*(n-1)/2 comparaisons et autant d'additions. Donc cette fonction a un coût qui est de l'orde de n<sup>2</sup>.
+
+```python
+def gain_max_iter(t,l,r):
+    """Renvoie le gain maximal de manière itérative
+    : param tableau : liste
+    : return : int
+    >>> gain_max_mem(tab,0,0)
+    34
+    """
+    n=len(t)
+    q=[[p[i][j] for j in range(i+1)] for i in range(n)]
+    for i in range(n-2,-1,-1):
+        for j in range(i+1):
+            q[i][j]=q[i][j]+max(q[i+1][j],q[i+1][j+1])
+    return q[0][0]
+```
+
+b. Méthode récursive
+
 On cherche à écrire une fonction récursive permettant le calcul du gain maximal.
 
 Soit G(l,r) le gain maximum du nombre situé à la l-ème ligne et la r-ème colonne.
@@ -477,7 +501,7 @@ Ce qui peut s'implémenter en Python :
 tab = [ [5], [8, 10 ], [11, 3, 4], [6, 10, 7, 12 ]]
 
 def gain_max(t,l,r):
-    """Renvoie le gain maximal
+    """Renvoie le gain maximal de manière récursive
     : param tableau : liste
     : return : int
     >>> gain_max(tab,0,0)
@@ -490,7 +514,7 @@ def gain_max(t,l,r):
         return t[l][r]+max(gain_max(t,l+1,r),gain_max(t,l+1,r+1))    
 ```
     
-En utilisant la programmation dynamique, sur le même schéma que précédemment, en utilisant le procédé de mémoïsation :
+En utilisant la programmation dynamique, sur le même schéma que précédemment, c'est-à-dire en utilisant le procédé de mémoïsation :
 
 ```python
 def gain_max_mem(t,l,r,mem=None):
