@@ -3,7 +3,7 @@
 1. Nécessité de la programmation dynamique
 
 Afin d'expliquer la nécessité de la programmation dynamique, nous commençons par étudier l'exemple simple de la suite de Fibonacci.
-Celle-ci consiste à étudier une suite de nombres entiers définie par :
+Celle-ci consiste à réaliser une suite de nombres entiers définie par :
 **une phase d'initialisation**
 u<sub>0</sub>=0 ; 
 u<sub>1</sub>=1 ;
