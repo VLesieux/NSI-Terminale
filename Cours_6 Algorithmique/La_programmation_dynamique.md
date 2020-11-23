@@ -58,7 +58,7 @@ def Fibonacci_recursif(n):
         return Fibonacci_recursif(n-1)+Fibonacci_recursif(n-2)
 ```
 
-Un tel algorithme met en œuvreœuvre un calcul d'une manière dite **récursive** car la fonction Fibonacci s'appelle elle-même dans sa définition. Toutefois cette façon de procédé présente un problème d'efficacité dans sa mise en œuvre dès lors que la valeur de n devient importante.
+Un tel algorithme met en œuvre un calcul d'une manière dite **récursive** car la fonction Fibonacci s'appelle elle-même dans sa définition. Toutefois cette façon de procédé présente un problème d'efficacité dans sa mise en œuvre dès lors que la valeur de n devient importante.
 
  Pour nous en rendre compte, on se propose de comparer les durées d'exécution des deux procédés en important le module `time` ; la durée est calculée entre l'instant qui suit l'appel et l'instant qui précède l'appel de la fonction.
 
