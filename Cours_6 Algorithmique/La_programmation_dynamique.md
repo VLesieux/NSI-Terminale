@@ -105,7 +105,7 @@ Pour mettre en évidence le problème de façon visuelle, on peut utiliser l'app
 
 Par exemple pour le calcul de Fibonacci_recursif(8), on compte pas moins de 265 pas constitués d'allers-retours car le programme ne peut avancer qu'en recalculant de nombreuses fois les mêmes valeurs.
 
-La remédiation est d'enregistrer les résultats au fur et à mesure de leur obtention pour ne pas avoir à les recalculer d'où le nom de programmation dynamique.
+La remédiation est d'enregistrer les résultats au fur et à mesure de leur obtention pour ne pas avoir à les recalculer d'où le nom de programmation dynamique ; ce procédé est appelé procédé de **mémoïsation**.
 
 ```python
 def Fibonacci_recursif_mem(n,mem=None):
@@ -490,7 +490,7 @@ def gain_max(t,l,r):
         return t[l][r]+max(gain_max(t,l+1,r),gain_max(t,l+1,r+1))    
 ```
     
-En utilisant la programmation dynamique, sur le même schéma que précédemment :
+En utilisant la programmation dynamique, sur le même schéma que précédemment, en utilisant le procédé de mémoïsation :
 
 ```python
 def gain_max_mem(t,l,r,mem=None):
