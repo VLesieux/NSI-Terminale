@@ -2,13 +2,11 @@
 
 1. Nécessité de la programmation dynamique
 
-Afin d'expliquer la nécessité de la programmation dynamique, nous commençons par étudier l'exemple simple de la suite de Fibonacci.
+Afin d'expliquer l'intérêt de la programmation dynamique, nous commençons par étudier l'exemple simple de la suite de Fibonacci.
 Celle-ci consiste à réaliser une suite de nombres entiers définie par :
-**une phase d'initialisation**
-u<sub>0</sub>=0 ; 
-u<sub>1</sub>=1 ;
+**une phase d'initialisation** : u<sub>0</sub>=0 ; u<sub>1</sub>=1 ;
 et une **relation de récurrence** : u<sub>n</sub>=u<sub>n-1</sub>+u<sub>n-2</sub>.
-On obtient ainsi les premiers termes :
+On obtient ainsi les premiers termes de la suite :
 u<sub>2</sub>=u<sub>1</sub>+u<sub>0</sub>=1+0=1. 
 u<sub>3</sub>=u<sub>2</sub>+u<sub>1</sub>=1+1=2. 
 u<sub>4</sub>=u<sub>3</sub>+u<sub>2</sub>=2+1=3....etc...
@@ -58,7 +56,7 @@ def Fibonacci_recursif(n):
         return Fibonacci_recursif(n-1)+Fibonacci_recursif(n-2)
 ```
 
-Un tel algorithme met en œuvre un calcul d'une manière dite **récursive** car la fonction Fibonacci s'appelle elle-même dans sa définition. Toutefois cette façon de procédé présente un problème d'efficacité dans sa mise en œuvre dès lors que la valeur de n devient importante.
+Un tel algorithme met en œuvre un calcul de manière dite **récursive** car la fonction Fibonacci s'appelle elle-même dans la définition de la fonction. Toutefois cette façon de procéder présente un problème d'efficacité dans sa mise en œuvre dès que la valeur de n devient importante.
 
  Pour nous en rendre compte, on se propose de comparer les durées d'exécution des deux procédés en important le module `time` ; la durée est calculée entre l'instant qui suit l'appel et l'instant qui précède l'appel de la fonction.
 
@@ -97,15 +95,15 @@ def calcul_temps_Fibonacci_recursif(n):
 48.48135781288147
 ```
 
-On se rend compte que le temps d'exécution par le procédé récursif "explose" dès que n devient supérieur à 20 par rapport au temps d'exécution par le procédé itératif ; on peut même s'interroger sur l'efficacité du procédé récursif par rapport au procédé itératif au vu des résultats !
+On se rend compte que le temps d'exécution par le procédé récursif "explose" très rapidement dès que n devient supérieur à 20 par rapport au temps d'exécution par le procédé itératif ; on peut s'interroger sur l'efficacité du procédé récursif par rapport au procédé itératif au vu des résultats !
 
-Pour mettre en évidence le problème de façon visuelle, on peut utiliser l'application en ligne [pythontutor](http://www.pythontutor.com/)  qui permet de visualiser l'exécution du code. 
+Pour mettre en évidence le problème, on peut utiliser l'application en ligne [pythontutor](http://www.pythontutor.com/)  qui permet de visualiser l'exécution du code. 
 
 <img src="assets/pythontutor1.png"> 
 
-Par exemple pour le calcul de Fibonacci_recursif(8), on compte pas moins de 265 pas constitués d'allers-retours car le programme ne peut avancer qu'en recalculant de nombreuses fois les mêmes valeurs.
+Par exemple, pour le calcul de Fibonacci_recursif(8), on ne compte pas moins de 265 pas constitués d'allers-retours car le programme ne peut avancer qu'en recalculant de nombreuses fois les mêmes valeurs.
 
-La remédiation est d'enregistrer les résultats au fur et à mesure de leur obtention pour ne pas avoir à les recalculer d'où le nom de programmation dynamique ; ce procédé est appelé procédé de **mémoïsation**.
+La remédiation est d'enregistrer les résultats au fur et à mesure de leur obtention pour ne pas avoir à les recalculer ; ce procédé porte le nom de **mémoïsation**.
 
 ```python
 def Fibonacci_recursif_mem(n,mem=None):
@@ -122,11 +120,11 @@ def Fibonacci_recursif_mem(n,mem=None):
     """
     if mem == None:
         mem = [None for _ in range(n+1)]
- #on construit une liste constituée de (n+1) None qui va stocker les résultats
+ #on construit une liste constituée de (n+1) None pour stocker les résultats
     if n==0 or n==1:
         return n
     else:
-        if mem[n] == None:#on effectue le calcul car la valeur est à découvrir
+        if mem[n] == None:#on effectue le calcul car la valeur reste à découvrir
             mem[n]=Fibonacci_recursif_mem(n-1,mem)+Fibonacci_recursif_mem(n-2,mem)
 #            print(mem)#pour visualiser l'évolution de la liste de stockage
     return(mem[n])
@@ -173,7 +171,7 @@ ou avec pythontutor :
 
 Contexte du problème : on suppose que l'on dispose d'un nombre illimité de pièces de 2cts, 5cts, 10cts, 50cts et 1 euro(100 cts). Le problème est le suivant : " comment rendre la monnaie en un minimum de pièces ? ".
 
-Première approche : on peut proposer une résolution dite " gloutonienne " qui consiste à rendre en premier lieu des pièces de plus grande valeur avec toujours la condition que cette pièce de plus grande valeur ait une valeur inférieure à la somme à rendre et cela jusqu'à ce que la somme à rendre soit égale à zéro.
+Première approche : on peut proposer une méthode de résolution dite " gloutonienne " qui consiste à rendre en premier lieu des pièces de plus grande valeur avec toujours la condition que cette pièce de plus grande valeur ait une valeur inférieure à la somme à rendre et cela jusqu'à ce que la somme à rendre soit égale à zéro.
 
 Exemple : supposons que l'on ait 1 € 77 cts à rendre ; le rendu des pièces de manière gloutonne sera le suivant : une pièce de 1 €, 1 pièce de 50 cts, 1 pièce de 10 cts, 1 pièce de 10 cts, 1 pièce de 5 cts, 1 pièce de 2 cts ; soit un total de 6 pièces.
 
@@ -199,13 +197,13 @@ def rendu_monnaie_glouton(somme,pieces):
 ```
 
 L'algorithme glouton propose une solution mais attention, celle-ci n'est pas toujours optimale !
-Pour s'en rendre compte, travaillons avec le système impérial qui est l'ancien système monétaire britannique : imperial = [30,24,12,6,3,1]
+Pour s'en rendre compte, travaillons avec le système impérial qui est l'ancien système monétaire britannique : [30,24,12,6,3,1]
 
 ```python
 >>> rendu_monnaie_glouton(48,[30,24,12,6,3,1])
 [30, 12, 6]
 ```
-L'algorithme glouton propose un rendu de 3 pièces alors que la solution optimale est évidemment de rendre 2 pièces : [24,24].
+L'algorithme glouton propose un rendu de 3 pièces alors que la solution optimale est évidemment le rendu de 2 pièces : [24,24].
 
 Cherchons maintenant à écrire une fonction `nombre_pieces_opt(somme,pieces)` qui donne le nombre optimal de pièces pour effectuer le rendu.
 
@@ -245,7 +243,7 @@ On observe toutefois que la réponse par exemple à `nombre_pieces_opt(177,[100,
 
 D'où la nécessité d'utiliser la programmation dynamique pour éviter de recalculer un grand nombre de fois la même chose. 
 
-On suit le même modèle que celui utilisé pour `Fibonacci_recursif_mem(n,mem=None)` ; on construit une liste de stockage qui contient au départ autant d'éléments initialisés à 0 qu'il y a de valeurs possibles de somme. La fonction demande si le calcul de `mem[somme]` a déjà été fait :
+On suit donc le même modèle que celui utilisé pour `Fibonacci_recursif_mem(n,mem=None)` ; on construit une liste de stockage qui contient au départ autant d'éléments initialisés à 0 qu'il y a de valeurs possibles de somme. La fonction demande si le calcul de `mem[somme]` a déjà été fait :
 
 - si ce n'est pas le cas, on a alors  `mem[somme]==0`,  la fonction calcule sa valeur en utilisant la relation de récurrence vue précédemment
 - si c'est le cas la fonction retourne directement la valeur stockée
@@ -309,7 +307,7 @@ Dans le tableau ci-dessous, on suppose que les objets ont été triés initialem
 Rappel de l'algorithme glouton : cet algorithme ne donne pas forcèment le résultat optimal mais il a le mérite de proposer une solution ; il consiste à placer d'abord l'objet de plus grande valeur de poids P1 inférieur à P puis à prendre parmi les objets restants celui de plus grande valeur dont le poids est inférieur à P-P1, etc....
 
 On peut donc réaliser une fonction `ks_glouton(lvaleurs, lpoids,P)` capable de nous donner la liste des indices des objets en suivant l'algortithme glouton.  
-On peut également définir une fonction `interet_glouton` pour calculer l'intérêt remporté lorqu'on utilise l'algorithme glouton.
+On peut également définir une fonction `interet_glouton` pour calculer le gain remporté lorqu'on utilise l'algorithme glouton.
 
 ```python
 def choix_glouton(lpoids,lvaleurs,P):
@@ -398,7 +396,9 @@ def interet_max(i,P,lpoids,lvaleurs):
     return res
 ```
 
-Cette fonction est écrite en utilisant une **relation de récurrence** reliant l'intérêt maximal dans le cas où on considère i objets avec l'intérêt maximal dans le cas où on considère (i-1) objets. En effet :
+Cette fonction est écrite en utilisant une **relation de récurrence** reliant l'intérêt maximal dans le cas où on considère i objets avec l'intérêt maximal dans le cas où on considère (i-1) objets.
+
+En effet :
 
 **Si** le poids du (i)ième objet est inférieur à P, signifiant qu'il peut être pris,
 
@@ -513,7 +513,7 @@ def gain_max(t,l,r):
     else:
         return t[l][r]+max(gain_max(t,l+1,r),gain_max(t,l+1,r+1))    
 ```
-    
+
 En utilisant la programmation dynamique, sur le même schéma que précédemment, c'est-à-dire en utilisant le procédé de mémoïsation :
 
 ```python
@@ -560,5 +560,5 @@ En affichant la liste de stockage avec print(mem), on obtient :
 [[34, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 34
 ```
-À partir de cet affichage, on peut, en localisant les valeurs des maximums et en les ordonnant trouver le chemin qui conduit à la plus grande valeur 34, en l'occurence le chemin [5,8,11,10].
+À partir de cet affichage, on peut, en localisant les valeurs des maximums et en les ordonnant déterminer le chemin qui conduit à la plus grande valeur 34, en l'occurence le chemin [5,8,11,10].
 
