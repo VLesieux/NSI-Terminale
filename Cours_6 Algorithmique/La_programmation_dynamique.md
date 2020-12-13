@@ -56,7 +56,7 @@ def Fibonacci_recursif(n):
         return Fibonacci_recursif(n-1)+Fibonacci_recursif(n-2)
 ```
 
-Un tel algorithme met en œuvre un calcul de manière dite **récursive** car la fonction Fibonacci s'appelle elle-même dans la définition de la fonction. Toutefois cette façon de procéder présente un problème d'efficacité dans sa mise en œuvre dès que la valeur de n devient importante.
+Un tel algorithme met en œuvre une technique de calcul dite **récursive** car la fonction Fibonacci s'appelle elle-même dans sa définition. Toutefois cette façon de procéder présente un problème d'efficacité dès que la valeur de n devient importante.
 
  Pour nous en rendre compte, on se propose de comparer les durées d'exécution des deux procédés en important le module `time` ; la durée est calculée entre l'instant qui suit l'appel et l'instant qui précède l'appel de la fonction.
 
@@ -404,11 +404,10 @@ En effet :
 
 l'intérêt maximal en tenant compte de ce (i)ième objet est le <u>maximum entre</u> :
 
-- l'intérêt maximal obtenu avec les (i-1)ième objets avec la contrainte de poids (P - poids du (i)ième élément) + la valeur de ce (i)ième objet dans le cas où ce (i)ième objet serait pris. 
+- l'intérêt maximal obtenu avec les (i-1)ième objets avec la nouvelle contrainte de poids (P - poids du (i)ième élément) + la valeur de ce (i)ième objet dans le cas où ce (i)ième objet serait pris. 
 - l'intérêt maximal obtenu avec les (i-1)ième objets avec la contrainte de poids P dans le cas où ce (i)ième objet ne serait pas pris. 
 
-
-**sinon**, l'intérêt maximal en tenant compte de ce (i)ième objet reste identique à l'intérêt maximal en tenant compte des (i-1)ième objets.
+**Sinon**, l'intérêt maximal en tenant compte de ce (i)ième objet reste identique à l'intérêt maximal en tenant compte des (i-1)ième objets.
 
 En reprenant la méthode utilisée pour Fibonacci pour mémoriser les calculs intermédiaires, on peut proposer une autre version de la fonction précédente pour le calcul de l'intérêt maximal, utilisant la programmation dynamique :
 
@@ -465,7 +464,7 @@ a. Méthode itérative
 
 Une première méthode peut être itérative. 
 Évaluons le nombre d'opérations effectué dans ce cas.
-Pour chaque valeur de i allant de n-2 à 0, correspondant aux niveaux que nous parcourons de bas en haut, nous avons i+1 comparaisons et i+1 additions. Le total est donc (n-1)+(n-2)+...+1 comparaisons et autant d'additions, soit n*(n-1)/2 comparaisons et autant d'additions. Donc cette fonction a un coût qui est de l'orde de n<sup>2</sup>.
+Pour chaque valeur de i allant de n-2 à 0, correspondant aux niveaux que nous parcourons de bas en haut, nous avons i+1 comparaisons et i+1 additions. Le total est donc (n-1)+(n-2)+...+1 comparaisons et autant d'additions, soit n*(n-1)/2 comparaisons et autant d'additions. Donc cette fonction a un coût quadratique car il est de l'orde de n<sup>2</sup>.
 
 ```python
 def gain_max_iter(t,l,r):
@@ -500,18 +499,18 @@ Ce qui peut s'implémenter en Python :
 ```python
 tab = [ [5], [8, 10 ], [11, 3, 4], [6, 10, 7, 12 ]]
 
-def gain_max(t,l,r):
+def gain_max_rec(t,l,r):
     """Renvoie le gain maximal de manière récursive
     : param tableau : liste
     : return : int
-    >>> gain_max(tab,0,0)
+    >>> gain_max_rec(tab,0,0)
     34
     """
     n=len(t)
     if l==n-1:
         return t[l][r]
     else:
-        return t[l][r]+max(gain_max(t,l+1,r),gain_max(t,l+1,r+1))    
+        return t[l][r]+max(gain_max_rec(t,l+1,r),gain_max_rec(t,l+1,r+1))    
 ```
 
 En utilisant la programmation dynamique, sur le même schéma que précédemment, c'est-à-dire en utilisant le procédé de mémoïsation :
