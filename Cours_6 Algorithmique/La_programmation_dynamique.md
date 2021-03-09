@@ -173,7 +173,7 @@ Contexte du problème : on suppose que l'on dispose d'un nombre illimité de pi�
 
 Première approche : on peut proposer une méthode de résolution dite " gloutonienne " qui consiste à rendre en premier lieu des pièces de plus grande valeur avec toujours la condition que cette pièce de plus grande valeur ait une valeur inférieure à la somme à rendre et cela jusqu'à ce que la somme à rendre soit égale à zéro.
 
-Exemple : supposons que l'on ait 1 € 77 cts à rendre ; le rendu des pièces de manière gloutonne sera le suivant : une pièce de 1 €, 1 pièce de 50 cts, 1 pièce de 10 cts, 1 pièce de 10 cts, 1 pièce de 5 cts, 1 pièce de 2 cts ; soit un total de 6 pièces.
+Exemple : supposons que l'on ait 1 € 77 cts ou  177 cts à rendre ; le rendu des pièces de manière gloutonne sera le suivant : une pièce de 1 €, 1 pièce de 50 cts, 1 pièce de 10 cts, 1 pièce de 10 cts, 1 pièce de 5 cts, 1 pièce de 2 cts ; soit un total de 6 pièces.
 
 On peut proposer l'implémentation suivante en python : 
 
