@@ -44,14 +44,12 @@ class Carte:
         self.__couleur=coul
         if val==11:
             self.__figure="Valet"
+        elif val==12:
+            self.__figure="Dame"
+        elif val==13:
+            self.__figure="Roi"
         else:
-            if val==12:
-                self.__figure="Dame"
-            else:
-                if val==13:
-                    self.__figure="Roi"
-                else:
-                    self.__figure="Aucune"
+            self.__figure="Aucune"
 
 ma_carte=Carte(11,"Trèfle")
 
@@ -101,14 +99,12 @@ Pour utiliser ou modifier les attributs, on utilisera de préférance des métho
         """
         if val==11:
             self.__figure="Valet"
+        elif val==12:
+            self.__figure="Dame"
+        elif val==13:
+            self.__figure="Roi"
         else:
-            if val==12:
-                self.__figure="Dame"
-            else:
-                if val==13:
-                    self.__figure="Roi"
-                else:
-                    self.__figure="Aucune"    
+            self.__figure="Aucune"   
 
     def SetValeur(self,val):
         """
