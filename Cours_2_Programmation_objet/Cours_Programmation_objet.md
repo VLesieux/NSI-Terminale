@@ -151,7 +151,7 @@ ma_carte=Carte(11,"Trèfle")
 (11, 'Trèfle', 'Valet')
 ```
 
-Nous allons maintenant créer une nouvelle classe JeuDeCarte. L'objet jeu_de_carte sera un objet agrégé, c'est-à-dire constitué de 32 ou 52 cartes, objets de type Carte.
+Nous allons maintenant créer une nouvelle classe appelée `JeuDeCarte``. L'objet `jeu_de_carte` sera un objet agrégé, c'est-à-dire constitué de 32 ou 52 cartes, objets de type Carte.
 
 ```
 from exemple_classe import Carte
@@ -207,8 +207,12 @@ class JeuDeCarte:
         random.shuffle(self.__Paquet)
         for i in range(len(self.__Paquet)):
             print(self.__Paquet[i].Describe())      
-    
-    
+
+```   
+
+À essayer dans la console : 
+
+```     
     
     >>> mon_jeu=JeuDeCarte(32)
     >>> mon_jeu.Description_non_melange()
