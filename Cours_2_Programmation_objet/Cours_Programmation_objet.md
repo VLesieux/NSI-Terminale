@@ -124,7 +124,6 @@ ma_carte=Carte(11,"Trèfle")#création d'un objet, on parle d'instance de la cla
 À essayer dans la console : 
 
 ```    
->>> ma_carte=Carte(11,"Trèfle")
 >>> ma_carte.Describe()
 (11, 'Trèfle', 'Valet')
 >>> ma_carte.GetValeur()
@@ -140,8 +139,8 @@ True
 >>> ma_carte.Describe()
 (13, 'Pique', 'Roi')
 ```
-La classe Carte peut ainsi être utilisée comme un module dans un autre fichier Python.
-Si le fichier précédent s'appelle exemple_classe.py, on peut rappeler la classe Carte dans un nouveau fichier de la manière suivante :
+La classe `Carte` peut ainsi être utilisée comme un module dans un autre fichier Python.
+Si le fichier précédent s'appelle `exemple_classe.py`, on peut rappeler la classe Carte dans un nouveau fichier de la manière suivante :
 
 ```
 from exemple_classe import Carte
