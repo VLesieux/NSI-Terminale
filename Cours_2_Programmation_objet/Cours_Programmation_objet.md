@@ -25,7 +25,7 @@ Chaque classe doit définir une ou plusieurs méthodes appelées constructeurs. 
 
 En Python, On déclare une classe à l'aide du mot-clé **class**.
 Pour déterminer et initialiser les attributs d'un objet que l'on crée, on utilise la méthode particulière appelée **constructeur** ; son nom est imposé : __init__.
-Les attributs privés sont précédés du double underscore.
+Les attributs privés sont précédés du **double** underscore.
 La variable self, dans les méthodes d'un objet, désigne l'objet auquel s'appliquera la méthode.
 
 ```
@@ -34,11 +34,11 @@ class Carte:
     Une carte est caractérisée par :
     - sa valeur
     - sa couleur
-    - sa figure
+    - sa figure, celle-ci sera déduite de la valeur
     """
     def __init__(self,val,coul):
         """
-        constructeur de la classe carte
+        écriture du constructeur de la classe Carte (avec une majuscule)
         """
         self.__valeur=val
         self.__couleur=coul
@@ -51,12 +51,12 @@ class Carte:
         else:
             self.__figure="Aucune"
 
-ma_carte=Carte(11,"Trèfle")
+ma_carte=Carte(11,"Trèfle")#création d'un objet, on parle d'instance de la classe. Dans ce contexte, instance est un anglicisme, qui signifie « cas », « exemple ».
 
 >>> print(ma_carte)
-<__main__.Carte object at 0x10c1951d0>
+<__main__.Carte object at 0x10c1951d0>#on voit l'étiquette mémoire réservée à cette objet
 
->>> print(ma_carte.__doc__)
+>>> print(ma_carte.__doc__)#on lit la documentation de cet objet
 
     Une carte est caractérisée par :
     - sa valeur
