@@ -51,28 +51,6 @@ class Carte:
         else:
             self.__figure="Aucune"
 
-ma_carte=Carte(11,"Trèfle")#création d'un objet, on parle d'instance de la classe. Dans ce contexte, instance est un anglicisme, qui signifie « cas », « exemple ».
-
->>> print(ma_carte)
-<__main__.Carte object at 0x10c1951d0>#on voit l'étiquette mémoire réservée à cet objet
-
->>> print(ma_carte.__doc__)#on lit la documentation de cet objet
-
-    Une carte est caractérisée par :
-    - sa valeur
-    - sa couleur
-    - sa figure
-
->>> print(ma_carte.__init__.__doc__)
-
-        constructeur de le classe carte    
-```
-
-Pour utiliser ou modifier les attributs, on utilisera de préférence des **méthodes** dédiées dont le rôle est de faire l'interface entre l'utilisateur de l'objet et la représentation interne de l'objet (ses attributs). Il en existe deux familles :
-- les accesseurs ou getters : pour obtenir la valeur d'un attribut
-- les mutateurs ou setters : pour modifier la valeur d'un attribut
-
-```
     def GetValeur(self):
         """
         Retourne la valeur d'une carte
@@ -92,7 +70,7 @@ Pour utiliser ou modifier les attributs, on utilisera de préférence des **mét
         return self.__figure
     
     
-    def SetFigure(self,val):
+    def _SetFigure(self,val):
         """
         Méthode privée pour changer la figure en fonction de la nouvelle valeur
         pour la cohérence
@@ -113,7 +91,7 @@ Pour utiliser ou modifier les attributs, on utilisera de préférence des **mét
         """
         if 2<=val<=14:
             self.__valeur=val
-            self.__SetFigure(val)
+            self._SetFigure(val)
             return True
         else:
             return False
@@ -137,7 +115,15 @@ Pour utiliser ou modifier les attributs, on utilisera de préférence des **mét
         """           
         
         return (self.__valeur,self.__couleur,self.__figure)
-        
+    
+
+ma_carte=Carte(11,"Trèfle")#création d'un objet, on parle d'instance de la classe. Dans ce contexte, instance est un anglicisme, qui signifie « cas », « exemple ».
+
+```     
+
+À essayer dans la console : 
+
+```    
 >>> ma_carte=Carte(11,"Trèfle")
 >>> ma_carte.Describe()
 (11, 'Trèfle', 'Valet')
