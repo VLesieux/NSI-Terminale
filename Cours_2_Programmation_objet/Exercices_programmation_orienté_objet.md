@@ -40,42 +40,6 @@ On créera deux méthodes privées `get_θ` et `get_r` et une méthode publique 
 
 **Exercice 2** : 
 
-
-1. Proposer une implémentation sous forme de classe de la structure abstraite Pile vue dans le  [cours précédent](https://github.com/VLesieux/NSI-Terminale/blob/master/Cours_1_Structures%20de%20donn%C3%A9es/1.Cours_Structures_donn%C3%A9es_lin%C3%A9aires_et_dictionnaires.md) . On utilisera le type liste pour typer les attributs privés et des méthodes publiques pour manipuler ceux-ci.
-
-Réaliser une classe Pile pour réaliser ceci : 
-
-```python
->>> ma_pile=Pile()
->>> ma_pile.empiler(5)
->>> ma_pile.empiler(12)
->>> ma_pile.montrer()
-[5, 12]
->>> ma_pile.depiler()
-12
->>> ma_pile.montrer()
-[5]
-```
-
-
-2. Faire de même pour la structure File.
-
-Réaliser une classe File pour réaliser ceci : 
-
-```python
->>> ma_file=File()
->>> ma_file.enfiler(5)
->>> ma_file.enfiler(12)
->>> ma_file.montrer()
-[5, 12]
->>> ma_file.defiler()
-5
->>> ma_file.montrer()
-[12]
-```
-
-**Exercice 3** : 
-
 Le domino est un jeu très ancien composé de 28 pièces toutes différentes. Sur chacune de ces pièces, il y a deux côtés constitués de 0 (blanc) à 6 points. Lorsque deux côtés possèdent le même nombre de points, on l'appelle domino double.
 
 1. Proposer une classe Domino permettant de représenter une pièce. Les objets seront initialisés par les valeurs portées par les des deux côtés (gauche et droite). On définit des méthodes `est_double` et `est_blanc` pour tester si le domino est double ou blanc. On implémentera également une méthode `compte` pour compter le nombre de points sur un domino. On ajoutera une méthode `affiche` qui affiche les valeurs des deux faces de manière horizontale pour un domino classique et de manière verticale pour un domino double.
