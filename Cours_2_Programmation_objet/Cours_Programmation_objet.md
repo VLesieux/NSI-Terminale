@@ -14,17 +14,23 @@ En 1995, l'ingénieur américain Grady Booch propose 5 étapes dans l'établisse
 
 ## Les classes
 
-Dans la programmation orientée objet, les différents objets utilisés peuvent être construits indépendamment les uns des autres (par exemple par des programmeurs différents) sans qu'il n'y ait de risque d'interférence.
-Ce résultat est obtenu grâce au concept d'**encapsulation** : les fonctionnalités internes et les variables qu'il utilise pour effectuer son travail sont en quelque sorte enfermées dans l'objet. Les autres objets et le monde extérieur ne peuvent y accéder qu'à travers des procédures bien définies, c'est ce qu'on appelle l'**interface** de l'objet.
-Une classe est une description d'un ensemble d'objets ayant une structure de données commune : les **attributs** et pouvant réaliser des actions : les **méthodes**. On considère en fait une classe comme un **nouveau type de données**. On appelle **instance de la classe** un objet du type de la classe qui la représente.
-L'intérêt de créer une classe est de pouvoir la modifier indépendamment du reste du programme en masquant leur complexité. Une donnée peut être déclarée en **accès public** (les autres objets peuvent accéder à la valeur de cette donnée ou la modifier) ou en **accès privé** (les autres objets n'ont pas le droit d'accéder directement à la valeur de cette donnée).
+Dans la programmation orientée objet, les différents objets utilisés peuvent être construits indépendamment les uns des autres (par exemple par des programmeurs différents) sans qu'il n'y ait de risque d'interférence.  
+
+Ce résultat est obtenu grâce au concept d'**encapsulation** : les fonctionnalités internes et les variables qu'il utilise pour effectuer son travail sont en quelque sorte enfermées dans l'objet. Les autres objets et le monde extérieur ne peuvent y accéder qu'à travers des procédures bien définies, c'est ce qu'on appelle l'**interface** de l'objet.   
+
+Une classe est une description d'un ensemble d'objets ayant une structure de données commune : les **attributs** et pouvant réaliser des actions : les **méthodes**. On considère en fait une classe comme un **nouveau type de données**. On appelle **instance de la classe** un objet du type de la classe qui la représente.  
+
+L'intérêt de créer une classe est de pouvoir la modifier indépendamment du reste du programme en masquant leur complexité. Une donnée peut être déclarée en **accès public** (les autres objets peuvent accéder à la valeur de cette donnée ou la modifier) ou en **accès privé** (les autres objets n'ont pas le droit d'accéder directement à la valeur de cette donnée).  
+
 Chaque classe doit définir une ou plusieurs méthodes appelées constructeurs. Un **constructeur** est une méthode invoquée lors de la création d'un objet. Cette méthode effectue les opérations nécessaires à l'initialisation de l'objet.
 
 
 ## Exemple d'implémentation d'une classe
 
-En Python, On déclare une classe à l'aide du mot-clé **class**.
-Pour déterminer et initialiser les attributs d'un objet que l'on crée, on utilise la méthode particulière appelée **constructeur** ; son nom est imposé : __init__.
+En Python, on déclare une classe à l'aide du mot-clé **class**.
+
+Pour déterminer et initialiser les attributs d'un objet que l'on crée, on utilise la méthode particulière appelée **constructeur** ; son nom est imposé : __init__.  
+
 Les attributs privés sont précédés du **double** underscore.
 La variable self, dans les méthodes d'un objet, désigne l'objet auquel s'appliquera la méthode.
 
@@ -32,9 +38,9 @@ La variable self, dans les méthodes d'un objet, désigne l'objet auquel s'appli
 class Carte:
     """
     Une carte est caractérisée par :
-    - sa valeur
-    - sa couleur
-    - sa figure, celle-ci sera déduite de la valeur
+    - sa valeur (7,8,9,10,11,12,13,14) pour un jeu de 32 cartes
+    - sa couleur (Pique, Trèfle, Coeur, Carreau)
+    - sa figure, déduite de la valeur: Aucune, Valet, Dame, Roi, As.
     """
     def __init__(self,val,coul):
         """
@@ -48,6 +54,8 @@ class Carte:
             self.__figure="Dame"
         elif val==13:
             self.__figure="Roi"
+        elif val==14:
+            self.__figure="As"
         else:
             self.__figure="Aucune"
 
@@ -81,6 +89,8 @@ class Carte:
             self.__figure="Dame"
         elif val==13:
             self.__figure="Roi"
+        elif val==14:
+            self.__figure="As"
         else:
             self.__figure="Aucune"   
 
@@ -89,7 +99,7 @@ class Carte:
         Retourne Vrai si la valeur de la carte a été changée par val
         et Faux sinon dans le cas où val n'est pas dans le bon domaine
         """
-        if 2<=val<=14:
+        if 7<=val<=14:
             self.__valeur=val
             self._SetFigure(val)
             return True
