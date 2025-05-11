@@ -45,11 +45,11 @@ Le domino est un jeu très ancien composé de 28 pièces toutes différentes. Su
 
 
 
-1. Proposer une classe Domino permettant de représenter une pièce. Les objets seront initialisés par les valeurs portées par les des deux côtés (gauche et droite). On définit des méthodes `est_double` et `est_blanc` pour tester si le domino est double ou blanc. On implémentera également une méthode `compte` pour compter le nombre de points sur un domino. On ajoutera une méthode `affiche` qui affiche les valeurs des deux faces de manière horizontale pour un domino classique et de manière verticale pour un domino double.
+1. Proposer une classe Domino permettant de représenter une pièce. Les objets seront initialisés par les valeurs portées par les des deux côtés (gauche et droite). On définit des méthodes `est_double` et `est_blanc` pour tester si le domino est double ou blanc. On ajoutera également une méthode `affiche` qui affiche les valeurs des deux faces de manière horizontale pour un domino classique et de manière verticale pour un domino double.
 
-2. Proposer une classe JeuDeDomino permettant de manipuler le jeu de domino complet. On créera une méthode pour mélanger le jeu et pour distribuer selon 2 joueurs.
+2. Proposer une classe JeuDeDomino permettant de manipuler le jeu de domino complet. On créera une méthode pour créer les dominos (les mettre dans `jeu`), pour les `mélanger`, puis pour les `distribuer` en les affichant. 
 
-	On utilisera la méthode random.shuffle(mylist)
+Indication : on utilisera la méthode random.shuffle(mylist)
    
 ```python
 >>> import random
@@ -61,7 +61,9 @@ random.shuffle(mylist)
 ```
    
 
-3. En utilisant cette classe, on affichera le jeu des 2 joueurs, puis on affichera les couples de dominos possibles.
+3. On créera également une méthode `couples_de_dominos` pour réaliser des couples de dominos, puis une méthode `affichage_de_dominos_couples` pour afficher ces couples.
+
+
 ```python
 >>> jeu = JeuDeDomino()
 >>> jeu.creer()
