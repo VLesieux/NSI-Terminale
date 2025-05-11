@@ -41,7 +41,7 @@ On créera deux méthodes privées `get_θ` et `get_r` et une méthode publique 
 **Exercice 2** : 
 
 Le domino est un jeu très ancien composé de 28 pièces toutes différentes. Sur chacune de ces pièces, il y a deux côtés constitués de 0 (blanc) à 6 points. Lorsque deux côtés possèdent le même nombre de points, on l'appelle domino double.
-<p align="center"><img width="200" height="300" src="Assets/jeu_domino.jpg"></p>
+<p align="center"><img width="200" height="200" src="Assets/jeu_domino.jpg"></p>
 
 
 
