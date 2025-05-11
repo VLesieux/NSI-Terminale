@@ -41,8 +41,8 @@ On créera deux méthodes privées `get_θ` et `get_r` et une méthode publique 
 **Exercice 2** : 
 
 Le domino est un jeu très ancien composé de 28 pièces toutes différentes. Sur chacune de ces pièces, il y a deux côtés constitués de 0 (blanc) à 6 points. Lorsque deux côtés possèdent le même nombre de points, on l'appelle domino double.
+<p align="center"><img width="200" height="300" src="Assets/jeu_domino.jpg"></p>
 
-<img width="400" height="400" src="Assets/jeu_domino.jpg">
 
 
 1. Proposer une classe Domino permettant de représenter une pièce. Les objets seront initialisés par les valeurs portées par les des deux côtés (gauche et droite). On définit des méthodes `est_double` et `est_blanc` pour tester si le domino est double ou blanc. On implémentera également une méthode `compte` pour compter le nombre de points sur un domino. On ajoutera une méthode `affiche` qui affiche les valeurs des deux faces de manière horizontale pour un domino classique et de manière verticale pour un domino double.
