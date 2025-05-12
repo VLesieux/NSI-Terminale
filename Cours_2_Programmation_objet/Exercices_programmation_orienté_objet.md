@@ -25,7 +25,7 @@ if (x==0) and (y==0):
 r=math.sqrt(x**2+y**2)
 print("le rayon r vaut :",r," et l'angle θ(degré) vaut : ",θ)
 ```
-Réaliser une classe Point pour réaliser ceci : /Users/vincentlesieux/Documents/Boulot/Computing/SNT/Theme_5_Localisation_cartographie_mobilite/Cours_Localisation_cartographie_et_mobilite.md
+Réaliser une classe Point pour réaliser ceci dans la console :
 
 ```python
 >>> A=Point(-2,5)
