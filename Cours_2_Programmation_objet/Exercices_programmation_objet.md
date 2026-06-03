@@ -419,3 +419,52 @@ if __name__ == '__main__':
     doctest.testmod(verbose=True)
 
 ```
+
+**Exercice 3 : Inspiré d'un sujet de bac pratique 2026**
+
+Les cartes mémoire (ou flashcards) sont des supports de révision comportant au recto une question
+et au verso la réponse. Elles permettent des révisions actives très efficaces.
+On souhaite développer une application utilisant le système des boîtes de Leitner, qui permet de
+gérer ces cartes en se basant sur un principe de répétition espacée.
+Dans cette méthode, chaque carte possède un niveau d’avancement (de 0 à 4). Plus le niveau est
+élevé, plus le délai avant la prochaine révision est grand. Les délais sont donnés par le tableau
+suivant :
+
+Niveau de la carte Délai avant révision
+0 1 jour
+1 3 jours
+2 7 jours
+3 15 jours
+4 30 jours
+
+En pratique, la méthode fonctionne ainsi : lorsque l’utilisateur révise une carte, s’il répond correctement, la carte passe au niveau supérieur (sans dépasser le niveau 4 maximum).
+
+S’il se trompe, la carte retombe immédiatement au niveau 0, quel que soit son niveau précédent. La prochaine date de révision est ensuite calculée en ajoutant le délai du nouveau niveau à la date du jour.
+On modélise ce fonctionnement à l’aide de la Programmation Orientée Objet.
+
+1) Écrire la méthode `traiter_reponse(self, succes)` qui prend en paramètre un
+booléen succes (True si l’utilisateur a bien répondu, False sinon). Cette méthode
+doit mettre à jour l’attribut `self.niveau` de la carte selon les règles de Leitner énon-
+cées accessible dans la liste globale DELAIS, puis calculer et mettre à jour l’attribut
+self.date_prochaine.
+
+Indication : Pour ajouter des jours à la date d’aujourd’hui, on utilisera la fonction fournie
+date_future(nb_jours) qui renvoie la date située nb_jours après aujourd’hui.
+
+2) On considère que la base de révision, le paquet de cartes, est une liste d’instances de la classe Carte.
+
+Écrire une fonction `extraire_cartes_du_jour(paquet, date_jour)` qui prend en paramètres une liste de cartes paquet et une date de référence date_jour et qui renvoie une nouvelle liste contenant uniquement les cartes dont la date_prochaine est inférieure ou égale à date_jour.
+On admet qu’on peut comparer des dates avec les opérateurs usuels <, <=, ==, >= et >.
+
+3) Afin d’aider l’étudiant à cibler ses lacunes, on souhaite extraire du paquet les cartes qui lui posent le plus de problèmes, c’est-à-dire celles dont le niveau est le plus bas parmi toutes les cartes du paquet.
+La fonction `extraire_cartes_a_renforcer(paquet)` a été rédigée dans ce but. Cepen-
+dant, elle contient une faille logique.
+
+
+Exécuter la fonction test_renforcement() fournie. Observer le résultat affiché dans la
+console et constater l’incohérence.
+
+Analyser le code de la fonction `extraire_cartes_a_renforcer(paquet)`, identifier
+la source de cette erreur logique, puis corriger le code afin qu’il ne renvoie que les cartes
+possédant rigoureusement le niveau minimum.
+
