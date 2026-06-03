@@ -586,9 +586,9 @@ Afficher les informations de cette instance dans la console.
 
 L’exécution de la méthode `importer_donnees` provoque une erreur logique lors de l’utilisation ultérieure des données, notamment lors de la manipulation du poids et de l’identifiant des renards.
 
-Identifier la source de cette erreur dans la lecture des données brutes, proposer une correction du code de la méthode, puis tester cette correction en instanciant le refuge “SOS Goupil” et en y important le fichier donnees_renards.csv.
+Identifier la source de cette erreur dans la lecture des données brutes, proposer une correction du code de la méthode, puis tester cette correction en instanciant le refuge “SOS Goupil” et en y important le fichier `donnees_renards.csv`.
 
-4) Le refuge utilise ces données pour surveiller la santé des animaux. Les vétérinaires considèrent qu’un renard est peu corpulent si son poids est strictement inférieur à 6.0 kg. La classe Refuge dispose de deux méthodes nommées lister_peu_corpulents et pourcentage_peu_corpulents pour effectuer ce suivi.
+4) Le refuge utilise ces données pour surveiller la santé des animaux. Les vétérinaires considèrent qu’un renard est peu corpulent si son poids est strictement inférieur à 6.0 kg. La classe Refuge dispose de deux méthodes nommées `lister_peu_corpulents` et `pourcentage_peu_corpulents` pour effectuer ce suivi.
 
 Exécuter les deux méthodes d’analyse de la corpulence sur l’instance de votre refuge. Justifier
 le pourcentage obtenu en isolant et en affichant le nombre de renards peu corpulents par
