@@ -430,7 +430,7 @@ Dans cette méthode, chaque carte possède un niveau d’avancement (de 0 à 4).
 élevé, plus le délai avant la prochaine révision est grand. Les délais sont donnés par le tableau
 suivant :
 
-Niveau de la carte Délai avant révision
+Niveau de la carte et délai avant révision
 
 0 : 1 jour
 
@@ -450,8 +450,7 @@ On modélise ce fonctionnement à l’aide de la Programmation Orientée Objet.
 
 1) Écrire la méthode `traiter_reponse(self, succes)` qui prend en paramètre un
 booléen succes (True si l’utilisateur a bien répondu, False sinon). Cette méthode
-doit mettre à jour l’attribut `self.niveau` de la carte selon les règles de Leitner énon-
-cées accessible dans la liste globale DELAIS, puis calculer et mettre à jour l’attribut
+doit mettre à jour l’attribut `self.niveau` de la carte selon les règles de Leitner énoncées accessible dans la liste globale DELAIS, puis calculer et mettre à jour l’attribut
 self.date_prochaine.
 
 Indication : Pour ajouter des jours à la date d’aujourd’hui, on utilisera la fonction fournie
@@ -473,4 +472,93 @@ console et constater l’incohérence.
 Analyser le code de la fonction `extraire_cartes_a_renforcer(paquet)`, identifier
 la source de cette erreur logique, puis corriger le code afin qu’il ne renvoie que les cartes
 possédant rigoureusement le niveau minimum.
+
+```python
+import datetime
+
+def date_future(nb_jours):
+    """Renvoie la date située nb_jours après aujourd'hui"""
+    return datetime.date.today() + datetime.timedelta(days=nb_jours)
+
+# Variable contenant les délais en jours pour chaque niveau (index 0 à 4)
+DELAIS = [1, 3, 7, 15, 30]
+
+class Carte:
+
+    def __init__(self, question, reponse):
+        self.question = question
+        self.reponse = reponse
+        self.niveau = 0
+        # À la création, la carte est à réviser le jour même
+        self.date_prochaine = datetime.date.today()
+
+    def __repr__(self):
+        return f"<Carte: {self.question} (Niveau {self.niveau})>"
+
+    #############################################################################
+    # Écrire la méthode traiter_reponse(self, succes) de la question 1          #
+    #############################################################################
+
+# Des cartes et un paquet de cartes pour réaliser des tests
+c1 = Carte("Capitale de l'Italie ?", "Rome")
+c1.niveau = 2
+c1.date_prochaine = date_future(4)
+c2 = Carte("7 x 8 ?", "56")
+c2.date_prochaine = date_future(1)
+c3 = Carte("Symbole du Fer ?", "Fe")
+c3.date_prochaine = date_future(7)
+
+paquet = [c1, c2, c3]
+   
+
+#############################################################################
+# Écrire la fonction extraire_cartes_du_jour de la question 2               #
+#############################################################################
+
+
+#############################################################################
+# Fonction défaillante à analyser et corriger pour la question 3            #
+#############################################################################
+
+def extraire_cartes_a_renforcer(paquet):
+    """
+    Parcourt le paquet et renvoie la liste des cartes ayant le 
+    niveau d'avancement le plus faible.
+    """
+    if len(paquet) == 0:
+        return []
+        
+    niveau_min = paquet[0].niveau
+    a_renforcer = []
+    
+    for carte in paquet:
+        if carte.niveau < niveau_min:
+            niveau_min = carte.niveau
+            a_renforcer.append(carte)
+        elif carte.niveau == niveau_min:
+            a_renforcer.append(carte)
+            
+    return a_renforcer
+
+
+def test_renforcement():
+    # Création d'un paquet de test
+    c1 = Carte("Capitale de l'Italie ?", "Rome")
+    c1.niveau = 2
+    
+    c2 = Carte("7 x 8 ?", "56")
+    c2.niveau = 1
+    
+    c3 = Carte("Symbole du Fer ?", "Fe")
+    c3.niveau = 2
+    
+    mon_paquet = [c1, c2, c3]
+    
+    # Appel de la fonction défaillante
+    resultat = extraire_cartes_a_renforcer(mon_paquet)
+    
+    print("Cartes à renforcer (niveau le plus bas attendu : 1) :")
+    print(resultat)
+```
+
 
