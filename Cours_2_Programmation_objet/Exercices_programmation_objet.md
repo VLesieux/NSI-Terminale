@@ -557,4 +557,43 @@ def test_renforcement():
     print(resultat)
 ```
 
+**Exercice 4 : Inspiré d'un sujet de bac pratique 2026**
 
+Le renard, longtemps considéré comme nuisible, est aujourd’hui de plus en plus protégé pour
+son rôle dans la régulation de la biodiversité. Afin d’aider à la réhabilitation des individus blessés ou orphelins, un refuge de protection a été construit. La personne en charge de l’infrastructure souhaite réaliser une base de données en CSV et Python pour stocker les informations essentielles sur les renards pris en charge.
+
+Deux entités distinctes sont représentées.
+
+La première entité est le Renard. Un renard est défini par un identifiant de type entier, un nom sous forme de chaîne de caractères, un poids en kilogrammes de type flottant, ainsi qu’une date d’arrivée représentée par une chaîne de caractères au format AAAA-MM-JJ.
+
+La seconde entité est le Refuge. Un refuge est défini par son nom, son adresse postale, et une liste regroupant les objets de type Renard qu’il héberge.
+
+Toutes les données relatives aux animaux sont fournies dans le fichier donnees_renards.csv,
+structuré au format CSV avec le point-virgule comme séparateur, placé dans le dossier Assets.
+
+Extrait d’informations fournies dans le fichier donnees_renards.csv :
+<p align="center"><img width="200" height="200" src="Assets/refuge.png"></p>
+
+1) Écrire le code du constructueur `__init__` de la classe Renard.
+2) Écrire le code de la méthode `__str__` de la classe Renard qui renvoie une chaîne de
+caractères qui présente l’animal sous le format précis : "Renard ID [id] - [Nom] (Arrivé le [date_arrivee])".
+
+Tester ensuite cette classe en instanciant un renard dans une variable renard1 ayant pour
+identifiant 200, se nommant Oscar, ayant un poids de 5.1 kg et étant arrivé le 1er janvier 2026.
+
+Afficher les informations de cette instance dans la console.
+
+3) Le fichier `gestion_refuge.py` comporte une classe `Refuge`. Une méthode `importer_donnees` y est pré-écrite pour lire le fichier CSV et peupler le refuge.
+
+L’exécution de la méthode `importer_donnees` provoque une erreur logique lors de l’utili-
+sation ultérieure des données, notamment lors de la manipulation du poids et de l’identifiant
+des renards. Identifier la source de cette erreur dans la lecture des données brutes, proposer
+une correction du code de la méthode, puis tester cette correction en instanciant le refuge
+“SOS Goupil” et en y important le fichier donnees_renards.csv.
+
+4) Le refuge utilise ces données pour surveiller la santé des animaux. Les vétérinaires considèrent qu’un renard est peu corpulent si son poids est strictement inférieur à 6.0 kg. La classe Refuge dispose de deux méthodes nommées lister_peu_corpulents et ourcentage_peu_corpulents
+pour effectuer ce suivi.
+
+Exécuter les deux méthodes d’analyse de la corpulence sur l’instance de votre refuge. Justifier
+le pourcentage obtenu en isolant et en affichant le nombre de renards peu corpulents par
+rapport au nombre total de renards hébergés.
