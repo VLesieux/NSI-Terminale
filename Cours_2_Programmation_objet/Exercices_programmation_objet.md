@@ -568,8 +568,7 @@ La première entité est le Renard. Un renard est défini par un identifiant de 
 
 La seconde entité est le Refuge. Un refuge est défini par son nom, son adresse postale, et une liste regroupant les objets de type Renard qu’il héberge.
 
-Toutes les données relatives aux animaux sont fournies dans le fichier donnees_renards.csv,
-structuré au format CSV avec le point-virgule comme séparateur, placé dans le dossier Assets.
+Toutes les données relatives aux animaux sont fournies dans le fichier [donnees_renards.csv](Assets/donnees_renards.csv), structuré au format CSV avec le point-virgule comme séparateur, placé dans le dossier Assets.
 
 Extrait d’informations fournies dans le fichier donnees_renards.csv :
 <p align="center"><img width="200" height="200" src="Assets/refuge.png"></p>
@@ -583,7 +582,7 @@ identifiant 200, se nommant Oscar, ayant un poids de 5.1 kg et étant arrivé le
 
 Afficher les informations de cette instance dans la console.
 
-3) Le fichier `gestion_refuge.py` comporte une classe `Refuge`. Une méthode `importer_donnees` y est pré-écrite pour lire le fichier CSV et peupler le refuge.
+3) Le fichier [gestion_refuge.py](Assets/gestion_refuge.py) comporte une classe `Refuge`. Une méthode `importer_donnees` y est pré-écrite pour lire le fichier CSV et peupler le refuge.
 
 L’exécution de la méthode `importer_donnees` provoque une erreur logique lors de l’utili-
 sation ultérieure des données, notamment lors de la manipulation du poids et de l’identifiant
