@@ -431,11 +431,17 @@ Dans cette méthode, chaque carte possède un niveau d’avancement (de 0 à 4).
 suivant :
 
 Niveau de la carte Délai avant révision
-0 1 jour
-1 3 jours
-2 7 jours
-3 15 jours
-4 30 jours
+
+0 : 1 jour
+
+1 : 3 jours
+
+2 : 7 jours
+
+3 : 15 jours
+
+4 : 30 jours
+
 
 En pratique, la méthode fonctionne ainsi : lorsque l’utilisateur révise une carte, s’il répond correctement, la carte passe au niveau supérieur (sans dépasser le niveau 4 maximum).
 
