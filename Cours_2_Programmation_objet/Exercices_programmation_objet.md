@@ -462,16 +462,12 @@ date_future(nb_jours) qui renvoie la date située nb_jours après aujourd’hui.
 On admet qu’on peut comparer des dates avec les opérateurs usuels <, <=, ==, >= et >.
 
 3) Afin d’aider l’étudiant à cibler ses lacunes, on souhaite extraire du paquet les cartes qui lui posent le plus de problèmes, c’est-à-dire celles dont le niveau est le plus bas parmi toutes les cartes du paquet.
-La fonction `extraire_cartes_a_renforcer(paquet)` a été rédigée dans ce but. Cepen-
-dant, elle contient une faille logique.
 
+La fonction `extraire_cartes_a_renforcer(paquet)` a été rédigée dans ce but. Cependant, elle contient une faille logique.
 
-Exécuter la fonction test_renforcement() fournie. Observer le résultat affiché dans la
-console et constater l’incohérence.
+Exécuter la fonction test_renforcement() fournie. Observer le résultat affiché dans la console et constater l’incohérence.
 
-Analyser le code de la fonction `extraire_cartes_a_renforcer(paquet)`, identifier
-la source de cette erreur logique, puis corriger le code afin qu’il ne renvoie que les cartes
-possédant rigoureusement le niveau minimum.
+Analyser le code de la fonction `extraire_cartes_a_renforcer(paquet)`, identifier la source de cette erreur logique, puis corriger le code afin qu’il ne renvoie que les cartes possédant rigoureusement le niveau minimum.
 
 ```python
 import datetime
