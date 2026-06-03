@@ -584,14 +584,11 @@ Afficher les informations de cette instance dans la console.
 
 3) Le fichier [gestion_refuge.py](Assets/gestion_refuge.py) comporte une classe `Refuge`. Une méthode `importer_donnees` y est pré-écrite pour lire le fichier CSV et peupler le refuge.
 
-L’exécution de la méthode `importer_donnees` provoque une erreur logique lors de l’utili-
-sation ultérieure des données, notamment lors de la manipulation du poids et de l’identifiant
-des renards. Identifier la source de cette erreur dans la lecture des données brutes, proposer
-une correction du code de la méthode, puis tester cette correction en instanciant le refuge
-“SOS Goupil” et en y important le fichier donnees_renards.csv.
+L’exécution de la méthode `importer_donnees` provoque une erreur logique lors de l’utilisation ultérieure des données, notamment lors de la manipulation du poids et de l’identifiant des renards.
 
-4) Le refuge utilise ces données pour surveiller la santé des animaux. Les vétérinaires considèrent qu’un renard est peu corpulent si son poids est strictement inférieur à 6.0 kg. La classe Refuge dispose de deux méthodes nommées lister_peu_corpulents et ourcentage_peu_corpulents
-pour effectuer ce suivi.
+Identifier la source de cette erreur dans la lecture des données brutes, proposer une correction du code de la méthode, puis tester cette correction en instanciant le refuge “SOS Goupil” et en y important le fichier donnees_renards.csv.
+
+4) Le refuge utilise ces données pour surveiller la santé des animaux. Les vétérinaires considèrent qu’un renard est peu corpulent si son poids est strictement inférieur à 6.0 kg. La classe Refuge dispose de deux méthodes nommées lister_peu_corpulents et pourcentage_peu_corpulents pour effectuer ce suivi.
 
 Exécuter les deux méthodes d’analyse de la corpulence sur l’instance de votre refuge. Justifier
 le pourcentage obtenu en isolant et en affichant le nombre de renards peu corpulents par
